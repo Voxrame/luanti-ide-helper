@@ -22,7 +22,7 @@ function VoxelManip:read_from_map(position1, position2) end
 ---       all modified blocks with `minetest.fix_light()` as soon as possible.
 ---       Keep in mind that modifying the map where light is incorrect can cause
 ---       more lighting bugs.
---- @param light boolean Default: true
+--- @param light boolean? Default: true
 function VoxelManip:write_to_map(light) end
 --- Returns a `MapNode` table of the node currently loaded in
 ---   the `VoxelManip` at that position
