@@ -47,6 +47,7 @@ We recommend to keep this annotation package right in your repository as a Git s
     `.emmyrc.json` (for all IDEs):
     ```json
     {
+      "$schema": "https://raw.githubusercontent.com/EmmyLuaLs/emmylua-analyzer-rust/refs/heads/main/crates/emmylua_code_analysis/resources/schema.json",
       "workspace.library": [
         "util/ide-helper"
       ]
