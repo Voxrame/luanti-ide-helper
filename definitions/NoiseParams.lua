@@ -38,8 +38,8 @@ local NoiseParams = {
 	--- `spread` is a vector with values for x, y, z to allow the noise variation to be
 	--- stretched or compressed in the desired axes.
 	--- Values are positive numbers.
-	--- @type vector
-	spread = vector(1,1,1),
+	--- @type vector|{x:number,y:number,z:number}
+	spread = vector.new(1,1,1),
 
 	--- This is a whole number that determines the entire pattern of the noise
 	--- variation. Altering it enables different noise patterns to be created.
