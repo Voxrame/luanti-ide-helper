@@ -6,6 +6,7 @@
 
 A helper package for [Luanti](https://www.luanti.org/) (Minetest) mod/game development that provides autocompletion and documentation for IDE integration.
 
+![Demo](./luanti-ide-helper.gif)
 
 ## Supported IDEs & Plugins
 
