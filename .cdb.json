@@ -3,6 +3,7 @@
     "name": "luanti_ide_helper",
     "title": "Luanti IDE Helper",
     "short_description": "Precise IDE autocompletion and documentation with accurate type signatures and API definitions.",
+    "video_url": "https://youtu.be/iGvIQl8IRpA",
     "dev_state": "actively_developed",
     "tags": [ "developer_tools" ],
     "license": "MIT",
