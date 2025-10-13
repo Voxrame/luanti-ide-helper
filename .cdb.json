@@ -10,6 +10,5 @@
     "repo": "https://github.com/Voxrame/luanti-ide-helper",
     "website": "https://github.com/Voxrame/luanti-ide-helper",
     "issue_tracker": "https://github.com/Voxrame/luanti-ide-helper/issues",
-    "donate_url": "https://boosty.to/lord-server",
-    "long_description": "Package for developers providing precise autocompletion and documentation for Luanti (Minetest) API in various IDEs.\n\n> ### ⚠️ DO NOT INSTALL THIS MOD\n\nThis package is intended for developers only. For complete installation instructions and IDE configuration, please visit [our GitHub repository](https://github.com/Voxrame/luanti-ide-helper).\n\n![Demo](./luanti-ide-helper.gif)"
+    "donate_url": "https://boosty.to/lord-server"
 }
