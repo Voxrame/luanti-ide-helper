@@ -441,7 +441,7 @@ local NodeDefinition = {
 	--- Name of dropped item when dug.
 	--- Default dropped item is the node itself.
 	--- Using a table allows multiple items, drop chances and item filtering:
-	--- @type table?
+	--- @type (string|table)?
 	drop                          = {
 		--- Maximum number of item lists to drop.
 		--- The entries in 'items' are processed in order. For each:
