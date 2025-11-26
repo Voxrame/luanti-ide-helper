@@ -1757,6 +1757,22 @@ function minetest.item_place_object(itemstack, placer, pointed_thing) end
 --- @param param2        number
 --- @return ItemStack, vector|nil
 function minetest.item_place(itemstack, placer, pointed_thing, param2) end
+
+--- * Runs callbacks registered by `core.register_on_item_pickup` and adds the item to the picker's `"main"` inventory list.
+--- * Parameters and return value are the same as `on_pickup`.
+--- * **Note**: is not called when wielded item overrides `on_pickup`
+--- @param itemstack            ItemStack
+--- @param picker               Player|ObjectRef|nil
+--- @param pointed_thing        pointed_thing
+--- @param time_from_last_punch number
+--- @param ...                  any
+function minetest.item_pickup(itemstack, picker, pointed_thing, time_from_last_punch, ...) end
+--- * Global secondary use callback. Does nothing.
+--- * Parameters and return value are the same as on_secondary_use.
+--- * **Note**: is not called when wielded item overrides on_secondary_use
+--- @param itemstack   ItemStack
+--- @param user Player|ObjectRef|nil
+function minetest.item_secondary_use(itemstack, user) end
 --- * Drop the item
 --- * returns the leftover itemstack
 ---
