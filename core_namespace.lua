@@ -525,6 +525,7 @@ function minetest.register_on_punchnode(callback) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4586-L4588)
 --- @param callback fun(min_pos:Position, max_pos:Position, seed:number)
+--- @overload fun(callback:fun(vmanip:VoxelManip, min_pos:Position, max_pos:Position, seed:number))
 function minetest.register_on_generated(callback) end
 --- * Called when a new player enters the world for the first time
 ---
