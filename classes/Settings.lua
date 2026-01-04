@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- An interface to read config files in the format of `minetest.conf`.
@@ -33,9 +33,13 @@ function Settings:get(key) end
 --- returns a boolean
 --- * `default` is the value returned if `key` is not found.
 --- * Returns `nil` if `key` is not found and `default` not specified.
+---
 --- @overload fun(key:string):boolean|nil
---- @param key string
---- @return boolean|nil
+---
+--- @param key     string
+--- @param default boolean
+---
+--- @return boolean
 function Settings:get_bool(key, default) end
 --- returns a NoiseParams table
 --- @param key string
