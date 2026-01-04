@@ -1,12 +1,12 @@
 --- @diagnostic disable: missing-return
 
 --- @class vector: Position
---- @operator eq         : boolean
---- @operator unm        : vector
---- @operator add(vector): vector
---- @operator sub(vector): vector
---- @operator mul(number): vector
---- @operator div(number): vector
+--- @operator eq           : boolean
+--- @operator unm          : vector
+--- @operator add(Position): vector
+--- @operator sub(Position): vector
+--- @operator mul(number)  : vector
+--- @operator div(number)  : vector
 vector = {}
 
 --- Creates a new vector `(a, b, c)`.
@@ -103,33 +103,33 @@ function vector:abs() end
 function vector:apply(func, ...) end
 
 --- Returns a vector where the function func has combined both components of v and w for each component.
---- @param v2   vector                      # Second vector to combine with.
+--- @param v2   Position                      # Second vector to combine with.
 --- @param func fun(number, number): number
 --- @return vector # New vector with combined components.
 function vector:combine(v2, func) end
 
 --- Returns a boolean, true if the vectors are identical.
---- @param other vector
+--- @param other Position
 --- @return boolean
 function vector:equals(other) end
 
 --- Returns in order minp, maxp vectors of the cuboid defined by `v1`, `v2`.
---- @param v1 vector
---- @param v2 vector
+--- @param v1 Position
+--- @param v2 Position
 --- @return vector minp, vector maxp
 function vector.sort(v1, v2) end
 
 --- Returns the angle between vectors in radians.
---- @param other vector
+--- @param other Position
 function vector:angle(other) end
 
 --- Calculates the dot product (скалярное произведение) with another vector.
---- @param other vector
+--- @param other Position
 --- @return number
 function vector:dot(other) end
 
 --- Calculates the cross product (векторное произведение) with another vector.
---- @param other vector
+--- @param other Position
 --- @return vector
 function vector:cross(other) end
 
@@ -167,23 +167,22 @@ function vector.random_in_area(min, max) end
 --- Returns a vector.
 --- - If `x` is a vector: Returns the sum of the vector and `x`.
 --- - If `x` is a number: Adds `x` to each component of the vector.
---- @param x vector|number
+--- @param x Position|number
 --- @return vector
 function vector:add(x) end
 
 --- Returns a vector.
 --- - If `x` is a vector: Returns the difference of the vector and `x`.
 --- - If `x` is a number: Subtracts `x` from each component of the vector.
---- @param x vector|number
+--- @param x Position|number
 --- @return vector
 function vector:subtract(x) end
 
 --- Returns a scaled vector.
 --- - Deprecated: If `scalar` is a vector: Returns the Schur product.
---- @param self   vector
---- @param scalar number|vector
+--- @param scalar number|Position
 --- @return vector
-function vector.multiply(self, scalar) end
+function vector:multiply(scalar) end
 
 --- Returns a scaled vector.
 --- - Deprecated: If `scalar` is a vector: Returns the Schur quotient.
@@ -195,13 +194,13 @@ function vector:divide(scalar) end
 --- - Uses (extrinsic) Z-X-Y rotation order and is right-handed, consistent with `ObjectRef:set_rotation`.
 --- - `vector.rotate(vector.new(0, 0, 1), rotation)` and `vector.rotate(vector.new(0, 1, 0), rotation)`
 ---    return vectors pointing forward and up relative to an entity's rotation `rotation`.
---- @param rotation vector
+--- @param rotation Position
 --- @return vector
 function vector:rotate(rotation) end
 
 --- Rotates the vector around `axis` by `angle` radians according to the right hand rule
 ---   and returns the result vector.
---- @param axis  vector
+--- @param axis  Position
 --- @param angle number # Angle in radians
 --- @return vector
 function vector:rotate_around_axis(axis, angle) end
@@ -209,7 +208,7 @@ function vector:rotate_around_axis(axis, angle) end
 --- Returns a rotation vector for `direction` pointing forward using `up` as the up vector.
 --- - If `up` is omitted, the roll of the returned vector defaults to zero.
 --- - Otherwise `direction` and `up` need to be vectors in a 90 degree angle to each other.
---- @param direction vector
---- @param up?       vector
+--- @param direction Position
+--- @param up?       Position
 --- @return vector
 function vector.dir_to_rotation(direction, up) end
