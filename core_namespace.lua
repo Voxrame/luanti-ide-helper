@@ -13,9 +13,13 @@
 
 --- @class NodeTable
 --- @field name string
---- @field param1 number?
---- @field param2 number?
+--- @field param1 integer?  8-bit integer ranging from 0 to 255
+--- @field param2 integer?  8-bit integer ranging from 0 to 255
 NodeTable = {}
+
+--- @class MapNode: NodeTable
+--- @field force_place? boolean if the node should forcibly overwrite any previous contents (default: false)
+
 
 --- See ./classes/NodeMetaRef.lua
 
@@ -33,9 +37,9 @@ PseudoRandom = {}
 --- See ./classes/InvRef.lua
 
 --- @class Position
---- @field x number
---- @field y number
---- @field z number
+--- @field x number|integer
+--- @field y number|integer
+--- @field z number|integer
 
 
 
@@ -1258,6 +1262,7 @@ function minetest.set_mapgen_params(MapgenParams) end
 ---     4) Settings set as the user config default
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5019-L5026)
+--- @return string|nil
 function minetest.get_mapgen_setting(name) end
 --- * Same as above, but returns the value as a NoiseParams table if the
 ---   setting `name` exists and is a valid NoiseParams.
@@ -2161,7 +2166,7 @@ function minetest.raillike_group(name) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5662-L5663)
 --- @param name string
---- @return number
+--- @return integer
 function minetest.get_content_id(name) end
 --- Returns a string
 --- * Gets the name of the content with that content ID
@@ -2391,14 +2396,7 @@ function minetest.request_insecure_environment() end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5821-L5822)
 function minetest.global_exists(name) end
 
--- Objects:
 
---- Settings object containing all of the settings from the
----   main config file (`minetest.conf`).
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4766-L4767)
---- @type table
-minetest.settings = {}
 --- `EnvRef` of the server environment and world.
 --- * Any function in the minetest namespace can be called using the syntax
 ---   `minetest.env:somefunction(somearguments)`
