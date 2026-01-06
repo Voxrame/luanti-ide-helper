@@ -107,4 +107,5 @@ function VoxelManip:update_liquids() end
 function VoxelManip:was_modified() end
 
 --- Returns actual emerged minimum and maximum positions.
+--- @return Position, Position
 function VoxelManip:get_emerged_area() end
