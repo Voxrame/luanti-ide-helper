@@ -353,3 +353,17 @@ function minetest.sha1(data, raw) end
 --- @param raw boolean optional. return raw bytes instead of hex digits, default: false
 function minetest.sha256(data, raw) end
 
+--- Converts a ColorSpec to a ColorString. If the ColorSpec is invalid, returns `nil`.
+--- @param colorspec ColorSpec The ColorSpec to convert.
+--- @return ColorString?
+function minetest.colorspec_to_colorstring(colorspec) end
+
+--- Converts a ColorSpec to a raw string of four bytes in an RGBA layout, returned as a string.
+--- @param colorspec ColorSpec The ColorSpec to convert.
+--- @return string?
+function minetest.colorspec_to_bytes(colorspec) end
+
+--- Converts a ColorSpec into RGBA table form. If the ColorSpec is invalid, returns nil. You can use this to parse ColorStrings.
+--- @param colorspec ColorSpec The ColorSpec to convert.
+--- @return {r:number, g:number, b:string, a:number}?
+function minetest.colorspec_to_table(colorspec) end
