@@ -9,6 +9,7 @@
 --- @operator div(number)  : vector
 vector = {}
 
+
 --- Creates a new vector `(a, b, c)`.
 --- * Deprecated: `vector.new()` does the same as `vector.zero()` and
 ---   `vector.new(v)` does the same as `vector.copy(v)`
@@ -90,9 +91,11 @@ function vector:round() end
 
 --- Returns a vector where `math.sign` was called for each component.
 --- See [Helper functions](https://api.luanti.org/helper-functions/) for details.
+--- @return vector
 function vector:sign() end
 
 --- Returns a vector with absolute values for each component.
+--- @return vector
 function vector:abs() end
 
 --- Applies a function to each component of the vector and returns a new vector.

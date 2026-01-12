@@ -37,9 +37,9 @@ PseudoRandom = {}
 --- See ./classes/InvRef.lua
 
 --- @class Position
---- @field x number|integer
---- @field y number|integer
---- @field z number|integer
+--- @field x integer
+--- @field y integer
+--- @field z integer
 
 
 
@@ -521,15 +521,17 @@ function minetest.register_on_dignode(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4584-L4585)
 --- @param callback fun(pos, node, puncher, pointed_thing)
 function minetest.register_on_punchnode(callback) end
---- * Called after generating a piece of world. Modifying nodes inside the area
----   is a bit faster than usually.
---- * **Avoid using this** whenever possible. As with other callbacks this blocks
----   the main thread and introduces noticeable latency.
----   Consider "Mapgen environment" for an alternative.
+
+--- * Called after the engine mapgen finishes a chunk but before it is written to the map.
+--- * Chunk data resides in `vmanip`. Other parts of the map are not accessible.
+---   The area of the chunk if comprised of `minp` and `maxp`,
+---     note that is smaller than the emerged area of the VoxelManip.
+---   Note: calling `read_from_map()` or `write_to_map()`
+---     on the VoxelManipulator object is not necessary and is disallowed.
+--- * `blockseed`: 64-bit seed number used for this chunk.
 ---
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4586-L4588)
---- @param callback fun(min_pos:Position, max_pos:Position, seed:number)
---- @overload fun(callback:fun(vmanip:VoxelManip, min_pos:Position, max_pos:Position, seed:number))
+--- @overload fun(callback:fun(min_pos:Position, max_pos:Position, blockseed:number))
+--- @param callback fun(vmanip:VoxelManip, min_pos:Position, max_pos:Position, blockseed:number)
 function minetest.register_on_generated(callback) end
 --- * Called when a new player enters the world for the first time
 ---
