@@ -6,7 +6,7 @@
 ---  * an RGB or RGBA hex color code, e.g. `"#RRGGBB"` or `"#RRGGBBAA"`, where `RR`, `GG`, `BB`, and `AA` are two-digit hexadecimal numbers representing the red, green, blue, and alpha (opacity) components of the color.
 ---    * e.g. `"#FF0000"` for red, `"#00FF00"` for green, `"#0000FF"` for blue, etc.
 ---  * a shorthand hex color code, e.g. `"#RGB"` or `"#RGBA"`, where `R`, `G`, `B`, and `A` are single-digit hexadecimal numbers representing the red, green, blue, and alpha (opacity) components of the color.
---- @class ColorString: string
+--- @alias ColorString string
 
 
 
@@ -17,4 +17,4 @@
 ---      `colorspec = 0xFF00FF00`
 ---  * string form: A ColorString (defined above):
 ---      `colorspec = "green"`
---- @class ColorSpec: {r:number, g:number, b:number, a:number}|ColorString|number
+--- @alias ColorSpec {r:number, g:number, b:number, a:number}|ColorString|number

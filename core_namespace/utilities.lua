@@ -365,5 +365,5 @@ function minetest.colorspec_to_bytes(colorspec) end
 
 --- Converts a ColorSpec into RGBA table form. If the ColorSpec is invalid, returns nil. You can use this to parse ColorStrings.
 --- @param colorspec ColorSpec The ColorSpec to convert.
---- @return {r:number, g:number, b:string, a:number}?
+--- @return {r:number, g:number, b:number, a:number}?
 function minetest.colorspec_to_table(colorspec) end
