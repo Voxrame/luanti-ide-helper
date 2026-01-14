@@ -44,8 +44,8 @@ PseudoRandom = {}
 
 
 --- @class Position2d
---- @field x number
---- @field y number
+--- @field x integer
+--- @field y integer
 
 --- @class pointed_thing
 --- @field public type  string one of {"nothing"|"node"|"object"}
