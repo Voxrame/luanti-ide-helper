@@ -31,5 +31,5 @@ function math.factorial(x) end
 ---
 --- @param x number
 ---
---- @return number
+--- @return integer
 function math.round(x) end
