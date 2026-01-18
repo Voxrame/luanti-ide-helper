@@ -1128,16 +1128,25 @@ function minetest.find_nodes_in_area(pos1, pos2, node_names, grouped) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4944-L4948)
 function minetest.find_nodes_in_area_under_air(pos1, pos2, nodenames) end
---- * Return world-specific perlin noise.
---- * The actual seed used is the noiseparams seed plus the world seed.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4949-L4951)
+--- * Deprecated: renamed to `core.get_value_noise` in version 5.12.0.
+--- @deprecated
+--- @param  noiseparams NoiseParams
+--- @return ValueNoise
 function minetest.get_perlin(noiseparams) end
---- * Deprecated: use `minetest.get_perlin(noiseparams)` instead.
---- * Return world-specific perlin noise.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4952-L4954)
+--- * Deprecated: renamed to core.get_value_noise in version 5.12.0.
+--- @deprecated
+--- @return ValueNoise
 function minetest.get_perlin(seeddiff, octaves, persistence, spread) end
+--- * Return world-specific value noise.
+--- * The actual seed used is the noiseparams seed plus the world seed.
+--- * **Important**: Requires the mapgen environment to be initalized, do not use at load time.
+--- @param  noiseparams NoiseParams
+--- @return ValueNoise
+function minetest.get_value_noise(noiseparams) end
+--- * Deprecated: use `core.get_value_noise(noiseparams)` instead.
+--- @deprecated
+--- @return ValueNoise
+function minetest.get_value_noise(seeddiff, octaves, persistence, spread) end
 --- * Return voxel manipulator object.
 --- * Loads the manipulator from the map if positions are passed.
 ---
