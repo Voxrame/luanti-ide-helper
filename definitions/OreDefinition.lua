@@ -85,43 +85,60 @@ local OreDefinition = {
     biomes = {},
 
     --- Used for `ore_type = "sheet"`
+	--- @type integer?
     column_height_min = 1,
     --- Used for `ore_type = "sheet"`
+	--- @type integer?
     column_height_max = 16,
     --- Used for `ore_type = "sheet"`
+	--- @type number?
     column_midpoint_factor = 0.5,
 
     --- Used for `ore_type = "puff"`
-    np_puff_top = {
-        offset = 4,
-        scale = 2,
-        spread = {x = 100, y = 100, z = 100},
-        seed = 47,
-        octaves = 3,
-        persistence = 0.7
-    },
+	--- ```lua
+	--- {
+	--- 	offset = 4,
+	--- 	scale = 2,
+	--- 	spread = {x = 100, y = 100, z = 100},
+	--- 	seed = 47,
+	--- 	octaves = 3,
+	--- 	persistence = 0.7
+	--- }
+	--- ```
+	--- @type NoiseParams?
+    np_puff_top = nil,
     --- Used for `ore_type = "puff"`
-    np_puff_bottom = {
-        offset = 4,
-        scale = 2,
-        spread = {x = 100, y = 100, z = 100},
-        seed = 11,
-        octaves = 3,
-        persistence = 0.7
-    },
+	--- ```lua
+	--- {
+	--- 	offset = 4,
+	--- 	scale = 2,
+	--- 	spread = {x = 100, y = 100, z = 100},
+	--- 	seed = 11,
+	--- 	octaves = 3,
+	--- 	persistence = 0.7
+	--- }
+	--- @type NoiseParams?
+    np_puff_bottom = nil,
 
     --- Used for `ore_type = "vein"`
+	--- @type number?
     random_factor = 1.0,
 
     --- Used for `ore_type = "stratum"`
-    np_stratum_thickness = {
-        offset = 8,
-        scale = 4,
-        spread = {x = 100, y = 100, z = 100},
-        seed = 17,
-        octaves = 3,
-        persistence = 0.7
-    },
+	--- ```lua
+	--- {
+	---     offset = 8,
+	---     scale = 4,
+	---     spread = {x = 100, y = 100, z =	 100},
+	---     seed = 17,
+	---     octaves = 3,
+	---     persistence = 0.7
+	--- }
+	--- ```
+	--- @type NoiseParams?
+    np_stratum_thickness = nil,
+
 	--- only used if no noise defined
+	--- @type integer?
 	stratum_thickness = 8,
 }
