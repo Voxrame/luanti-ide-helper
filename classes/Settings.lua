@@ -3,11 +3,11 @@
 
 --- An interface to read config files in the format of `minetest.conf`.
 ---
---- `minetest.settings` is a `Settings` instance that can be used to access the
+--- `core.settings` is a `Settings` instance that can be used to access the
 --- main config file (`minetest.conf`). Instances for other config files can be
 --- created via `Settings(filename)`.
 ---
---- Engine settings on the `minetest.settings` object have internal defaults that
+--- Engine settings on the `core.settings` object have internal defaults that
 --- will be returned if a setting is unset.
 --- The engine does *not* (yet) read `settingtypes.txt` for this purpose. This
 --- means that no defaults will be returned for mod settings.
@@ -50,7 +50,7 @@ function Settings:get_np_group(key) end
 function Settings:get_flags(key) end
 --- * Setting names can't contain whitespace or any of `="{}#`.
 --- * Setting values can't contain the sequence `\n"""`.
---- * Setting names starting with "secure." can't be set on the main settings object (`minetest.settings`).
+--- * Setting names starting with "secure." can't be set on the main settings object (`core.settings`).
 --- @param key string
 --- @param value string
 function Settings:set(key, value) end
@@ -73,7 +73,7 @@ function Settings:get_names() end
 
 --- * Returns a boolean indicating whether `key` exists.
 --- * In contrast to the various getter functions, `has()` doesn't consider any default values.
---- * This means that on the main settings object (`minetest.settings`), `get(key)` might return a value even if `has(key)` returns `false`.
+--- * This means that on the main settings object (`core.settings`), `get(key)` might return a value even if `has(key)` returns `false`.
 --- @param key string
 --- @return boolean
 function Settings:has(key) end

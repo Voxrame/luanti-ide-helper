@@ -2,7 +2,7 @@
 
 
 --- Used by `core.register_entity`.
---- The entity definition table becomes a metatable of a newly created per-entity luaentity table,  
+--- The entity definition table becomes a metatable of a newly created per-entity luaentity table,
 ---   meaning its fields (e.g. initial_properties) will be shared between all instances of an entity.
 --- @class EntityDefinition
 local EntityDefinition = {
@@ -22,8 +22,8 @@ local EntityDefinition = {
 	---   Calling `object:remove()` on an active object will call this with `removal=true`.
 	---   The mapblock the entity resides in being unloaded will call this with `removal=false`.
 	---	* Note that this won't be called if the object hasn't been activated in the first place.
-	---   In particular, `minetest.clear_objects({mode = "full"})` won't call this,
-	---   whereas `minetest.clear_objects({mode = "quick"})` might call this.
+	---   In particular, `core.clear_objects({mode = "full"})` won't call this,
+	---   whereas `core.clear_objects({mode = "quick"})` might call this.
 	--- @param removal boolean
 	on_deactivate = function(self, removal) end,
 	--- * Called on every server tick, after movement and collision processing.

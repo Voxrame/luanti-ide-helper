@@ -6,7 +6,7 @@
 ---@field privileges table<string,number>
 ---@field last_login number|nil
 
--- Used by `minetest.register_authentication_handler`.
+-- Used by `core.register_authentication_handler`.
 ---@class AuthenticationHandlerDefinition
 local AuthenticationHandlerDefinition = {
 	--- Get authentication data for existing player `name` (`nil` if player

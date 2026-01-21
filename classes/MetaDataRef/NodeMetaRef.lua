@@ -2,7 +2,7 @@
 
 
 --- Node metadata: reference extra data and functionality stored in a node.
---- Can be obtained via `minetest.get_meta(pos)`.
+--- Can be obtained via `core.get_meta(pos)`.
 ---
 --- @class NodeMetaRef: MetaDataRef
 NodeMetaRef = {}

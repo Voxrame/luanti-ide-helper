@@ -42,7 +42,7 @@ local SimpleSoundSpec = {
 	--- For death sounds, prefer playing a positional sound instead.
 	---
 	--- If you want to stop a sound when an entity dies or is deactivated,
-	--- store the handle and call `minetest.sound_stop` in `on_die` / `on_deactivate`.
+	--- store the handle and call `core.sound_stop` in `on_die` / `on_deactivate`.
 	---
 	--- Ephemeral sounds are entirely unaffected by the object being removed
 	--- or leaving the active object range.

@@ -327,7 +327,7 @@ local NodeDefinition = {
 	leveled                       = 0,
 
 	--- Maximum value for `leveled` (0-127), enforced in
-	--- `minetest.set_node_level` and `minetest.add_node_level`.
+	--- `core.set_node_level` and `core.add_node_level`.
 	--- Values above 124 might causes collision detection issues.
 	--- @type number?
 	leveled_max                   = 127,
@@ -497,9 +497,9 @@ local NodeDefinition = {
 	--- Node constructor; called after adding node.
 	--- Can set up metadata and stuff like that.
 	--- Not called for bulk node placement (i.e. schematics and `VoxelManip`).
-	--- Note: Within an on_construct callback, minetest.set_node can cause an
+	--- Note: Within an on_construct callback, core.set_node can cause an
 	--- infinite loop if it invokes the same callback.
-	---  Consider using `minetest.swap_node()` instead.
+	---  Consider using `core.swap_node()` instead.
 	--- default: nil
 	--- @type fun(pos:Position)?
 	on_construct                  = nil,
@@ -540,7 +540,7 @@ local NodeDefinition = {
 	preserve_metadata             = nil,
 
 	--- Called after constructing node when node was placed using
-	--- minetest.item_place_node / minetest.place_node.
+	--- core.item_place_node / core.place_node.
 	--- If return true no item is taken from itemstack.
 	--- `placer` may be any valid ObjectRef or nil.
 	--- default: nil
@@ -549,7 +549,7 @@ local NodeDefinition = {
 
 	--- oldmetadata is in table format.
 	--- Called after destructing node when node was dug using
-	--- minetest.node_dig / minetest.dig_node.
+	--- core.node_dig / core.dig_node.
 	--- default: nil
 	--- @type fun(pos:Player, oldnode, oldmetadata, digger:Player|ObjectRef|nil)?
 	after_dig_node                = nil,
@@ -559,9 +559,9 @@ local NodeDefinition = {
 	--- @type fun(pos:Position, player:Player|ObjectRef|nil)?
 	can_dig                       = nil,
 
-	--- default: minetest.node_punch
+	--- default: core.node_punch
 	--- Called when puncher (an ObjectRef) punches the node at pos.
-	--- By default calls minetest.register_on_punchnode callbacks.
+	--- By default calls core.register_on_punchnode callbacks.
 	--- @type fun(pos:Position, node:NodeTable, puncher:Player|ObjectRef|nil, pointed_thing:pointed_thing)?
 	on_punch                      = nil,
 
@@ -577,7 +577,7 @@ local NodeDefinition = {
 	--- @type (fun(pos:Position, node:NodeTable, clicker:Player|ObjectRef, itemstack:ItemStack, pointed_thing:pointed_thing|nil):ItemStack|nil)?
 	on_rightclick                 = core.node_punch,
 
-	--- default: minetest.node_dig
+	--- default: core.node_dig
 	--- By default checks privileges, wears out item (if tool) and removes node.
 	--- return true if the node was dug successfully, false otherwise.
 	--- Deprecated: returning nil is the same as returning true.
@@ -585,7 +585,7 @@ local NodeDefinition = {
 	on_dig                        = nil,
 
 	--- default: nil
-	--- called by NodeTimers, see minetest.get_node_timer and NodeTimerRef.
+	--- called by NodeTimers, see core.get_node_timer and NodeTimerRef.
 	--- elapsed is the total time passed since the timer was started.
 	--- return true to run the timer for another cycle with the same timeout
 	--- value.
@@ -594,7 +594,7 @@ local NodeDefinition = {
 
 	--- fields = {name1 = value1, name2 = value2, ...}
 	--- Called when an UI form (e.g. sign text input) returns data.
-	--- See minetest.register_on_player_receive_fields for more info.
+	--- See core.register_on_player_receive_fields for more info.
 	--- default: nil
 	--- @type fun(pos:Position, formname:string, fields:table, sender:Player)?
 	on_receive_fields             = nil,

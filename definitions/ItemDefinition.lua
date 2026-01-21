@@ -72,8 +72,8 @@ local ItemDefinition = {
 
     --- When used for nodes: Defines amount of light emitted by node.
     --- Otherwise: Defines texture glow when viewed as a dropped item
-    --- To set the maximum (14), use the value 'minetest.LIGHT_MAX'.
-    --- A value outside the range 0 to minetest.LIGHT_MAX causes undefined
+    --- To set the maximum (14), use the value 'core.LIGHT_MAX'.
+    --- A value outside the range 0 to core.LIGHT_MAX causes undefined
     --- behavior.
     --- @type number?
     light_source = 0,
@@ -152,7 +152,7 @@ local ItemDefinition = {
 
     --- Definition of item sounds to be played at various events.
     --- All fields in this table are optional.
-    --- See also `minetest.registered_items[itemname].sound`
+    --- See also `core.registered_items[itemname].sound`
     --- @type table<string,SimpleSoundSpec>?
     sound = {
 
@@ -160,7 +160,7 @@ local ItemDefinition = {
         --- @type SimpleSoundSpec
         breaks = nil,
 
-        --- When item is eaten with `minetest.do_item_eat`
+        --- When item is eaten with `core.do_item_eat`
         --- @type SimpleSoundSpec
         eat = nil,
 
@@ -177,9 +177,9 @@ local ItemDefinition = {
     --- Shall place item and return the leftover itemstack or nil to not modify the inventory.
 	--- Second return value: position of placed item/node.
     --- The placer may be any ObjectRef or nil.
-    --- default: minetest.item_place
+    --- default: core.item_place
     --- @type (fun(itemstack:ItemStack, placer:Player|ObjectRef|nil, pointed_thing:pointed_thing):ItemStack|nil, Position|vector|nil)?
-    on_place = minetest.item_place,
+    on_place = core.item_place,
 
     --- Same as on_place but called when not pointing at a node.
     --- Function must return either nil if inventory shall not be modified,
@@ -191,9 +191,9 @@ local ItemDefinition = {
 
     --- Shall drop item and return the leftover itemstack.
     --- The dropper may be any ObjectRef or nil.
-    --- default: minetest.item_drop
+    --- default: core.item_drop
     --- @type (fun(itemstack:ItemStack|ItemStackString, dropper:Player|ObjectRef|nil, pos:Position):ItemStack)?
-    on_drop = minetest.item_drop,
+    on_drop = core.item_drop,
 
     --- Called when a dropped item is punched by a player.
     --- Shall pick-up the item and return the leftover itemstack or nil to not
@@ -205,9 +205,9 @@ local ItemDefinition = {
     ---   luaentity) as `type="object"` `pointed_thing`.
     --- * `time_from_last_punch, ...` (optional): Other parameters from
     ---   `luaentity:on_punch`.
-    --- default: `minetest.item_pickup`
+    --- default: `core.item_pickup`
     --- @type fun(itemstack:ItemStack, picker:Player|ObjectRef|nil, pointed_thing:pointed_thing, time_from_last_punch, ...)?
-    on_pickup = minetest.item_pickup,
+    on_pickup = core.item_pickup,
 
     --- default: nil
     --- When user pressed the 'punch/mine' key with the item in hand.

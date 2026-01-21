@@ -1,7 +1,8 @@
 --- @diagnostic disable: missing-return
 
 
---- Used by `minetest.register_chatcommand`.
+--- Used by `core.register_chatcommand`.
+--- @see core.register_chatcommand
 --- @class ChatCommandDefinition
 local ChatCommandDefinition = {
 	--- Short parameter description. Example: `"<name> <privilege>"`.

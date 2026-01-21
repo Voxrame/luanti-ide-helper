@@ -6,11 +6,11 @@
 ---    its top-level scope, or from a function called during mod loading).
 ---  - Useful for libraries to determine which mod is loading them, for
 ---    example to access that mod's mod storage.
---- @see minetest.get_modpath
---- @see minetest.get_modnames
---- @see minetest.get_worldpath
+--- @see core.get_modpath
+--- @see core.get_modnames
+--- @see core.get_worldpath
 --- @return string returns the currently loading mod's name, when loading a mod.
-function minetest.get_current_modname() end
+function core.get_current_modname() end
 
 --- Returns the directory path for a mod, e.g. "/home/user/.minetest/usermods/modname".
 ---  - Returns nil if the mod is not enabled or does not exist (not installed).
@@ -18,12 +18,12 @@ function minetest.get_current_modname() end
 ---  - Useful for loading additional `.lua` modules or static data from a mod, or checking if a mod is enabled.
 --- @param mod_name string
 --- @return string
-function minetest.get_modpath(mod_name) end
+function core.get_modpath(mod_name) end
 
 --- Returns a list of enabled mods, sorted alphabetically.
 ---  - Does not include disabled mods, even if they are installed.
 --- @return table
-function minetest.get_modnames() end
+function core.get_modnames() end
 
 --- @class GameInfo
 --- @field id     string
@@ -36,12 +36,12 @@ function minetest.get_modnames() end
 ---    can be manually read from `game.conf` in the game's root directory.
 ---
 --- @return GameInfo
-function minetest.get_game_info() end
+function core.get_game_info() end
 
 --- Returns e.g. "/home/user/.minetest/world"
 ---  - Useful for storing custom data
 --- @return string
-function minetest.get_worldpath() end
+function core.get_worldpath() end
 
 --- Returns e.g. "/home/user/.minetest/mod_data/mymod"
 ---  - Useful for storing custom data independently of worlds.
@@ -49,15 +49,15 @@ function minetest.get_worldpath() end
 ---  - Can read or write to this directory at any time.
 ---  - It's possible that multiple Minetest instances are running at the same time, which may lead to corruption if you are not careful.
 --- @return string
-function minetest.get_mod_data_path() end
+function core.get_mod_data_path() end
 
 --- @return boolean
-function minetest.is_singleplayer() end
+function core.is_singleplayer() end
 
 
 --- Table containing API feature flags
 --- @type table
-minetest.features = {
+core.features = {
 	--- @since 0.4.7
 	glasslike_framed = true,
 	--- @since 0.4.7
@@ -98,7 +98,7 @@ minetest.features = {
 	--- Whether AreaStore's IDs are kept on save/load
 	--- @since 5.1.0
 	area_store_persistent_ids = true,
-	--- Whether minetest.find_path is functional
+	--- Whether core.find_path is functional
 	--- @since 5.2.0
 	pathfinder_works = true,
 	--- Whether Collision info is available to an objects' on_step
@@ -156,7 +156,7 @@ minetest.features = {
 	--- PcgRandom has get_state and set_state methods
 	--- @since 5.9.0
 	random_state_restore = true,
-	--- minetest.after guarantees that coexisting jobs are executed primarily
+	--- core.after guarantees that coexisting jobs are executed primarily
 	--- in order of expiry and secondarily in order of registration
 	--- @since 5.9.0
 	after_order_expiry_registration = true,
@@ -183,13 +183,13 @@ minetest.features = {
 	--- @since 5.9.0
 	item_meta_range = true,
 	--- Allow passing an optional "actor" ObjectRef to the following functions:
-	--- minetest.place_node, minetest.dig_node, minetest.punch_node
+	--- core.place_node, core.dig_node, core.punch_node
 	--- @since 5.9.0
 	node_interaction_actor = true,
 	--- "new_pos" field in entity moveresult
 	--- @since 5.9.0
 	moveresult_new_pos = true,
-	--- Allow removing definition fields in `minetest.override_item`
+	--- Allow removing definition fields in `core.override_item`
 	override_item_remove_fields = true,
 }
 
@@ -198,7 +198,7 @@ minetest.features = {
 --- * `missing_features`: `{foo=true, bar=true}`
 --- @param arg string|table
 --- @return boolean,table<string,boolean>
-function minetest.has_feature(arg) end
+function core.has_feature(arg) end
 
 --- Table containing information
 ---   about a player. Example return value:
@@ -228,7 +228,7 @@ function minetest.has_feature(arg) end
 ---   }
 --- ```
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4400-L4425)
-function minetest.get_player_information(player_name) end
+function core.get_player_information(player_name) end
 
 
 --- Will only be present if the client sent this information (requires v5.7+)
@@ -273,14 +273,14 @@ function minetest.get_player_information(player_name) end
 --- 	touch_controls = false,
 --- }
 --- ```
-function minetest.get_player_window_information(player_name) end
+function core.get_player_window_information(player_name) end
 
 --- Returns success.
 --- * Creates a directory specified by `path`, creating parent directories
 ---   if they don't exist.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4427-L4429)
-function minetest.mkdir(path) end
+function core.mkdir(path) end
 
 --- Removes a directory specified by path.
 --- If recursive is set to true, the directory is recursively removed. Otherwise, the directory will only be removed if it is empty.
@@ -288,7 +288,7 @@ function minetest.mkdir(path) end
 --- @param path string
 --- @param recursive boolean
 --- @return boolean
-function minetest.rmdir(path, recursive) end
+function core.rmdir(path, recursive) end
 
 
 --- Copies a directory specified by path to destination
@@ -297,7 +297,7 @@ function minetest.rmdir(path, recursive) end
 --- @param source string
 --- @param destination string
 --- @return boolean
-function minetest.cpdir(source, destination) end
+function core.cpdir(source, destination) end
 
 
 --- Moves a directory specified by path to destination.
@@ -306,7 +306,7 @@ function minetest.cpdir(source, destination) end
 --- @param source string
 --- @param destination string
 --- @return boolean
-function minetest.mvdir(source, destination) end
+function core.mvdir(source, destination) end
 
 --- Returns list of entry names
 --- * `is_dir` [Optional] is one of:
@@ -315,7 +315,7 @@ function minetest.mvdir(source, destination) end
 ---     * false: return only file names.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4430-L4434)
-function minetest.get_dir_list(path, is_dir) end
+function core.get_dir_list(path, is_dir) end
 
 --- Returns boolean indicating success
 --- * Replaces contents of file at path with new contents in a safe (atomic)
@@ -323,7 +323,7 @@ function minetest.get_dir_list(path, is_dir) end
 ---   `local f = io.open(path, "wb"); f:write(content); f:close()`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4435-L4438)
-function minetest.safe_file_write(path, content) end
+function core.safe_file_write(path, content) end
 
 --- Returns a table containing components of the
 ---    engine version.  Components:
@@ -336,34 +336,34 @@ function minetest.safe_file_write(path, content) end
 ---   reliable or verifiable. Compatible forks will have a different name and
 ---   version entirely. To check for the presence of engine features, test
 ---   whether the functions exported by the wanted features exist. For example:
----   `if minetest.check_for_falling then ... end`.
+---   `if core.check_for_falling then ... end`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4439-L4450)
-function minetest.get_version() end
+function core.get_version() end
 
 --- Returns the sha1 hash of data
 --- * `data`: string of data to hash
 --- * `raw`: [Optional] return raw bytes instead of hex digits, default: false
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4451-L4453)
-function minetest.sha1(data, raw) end
+function core.sha1(data, raw) end
 
 --- Returns the sha256 hash of `data`
 --- @param data string string of data to hash
 --- @param raw boolean optional. return raw bytes instead of hex digits, default: false
-function minetest.sha256(data, raw) end
+function core.sha256(data, raw) end
 
 --- Converts a ColorSpec to a ColorString. If the ColorSpec is invalid, returns `nil`.
 --- @param colorspec ColorSpec The ColorSpec to convert.
 --- @return ColorString?
-function minetest.colorspec_to_colorstring(colorspec) end
+function core.colorspec_to_colorstring(colorspec) end
 
 --- Converts a ColorSpec to a raw string of four bytes in an RGBA layout, returned as a string.
 --- @param colorspec ColorSpec The ColorSpec to convert.
 --- @return string?
-function minetest.colorspec_to_bytes(colorspec) end
+function core.colorspec_to_bytes(colorspec) end
 
 --- Converts a ColorSpec into RGBA table form. If the ColorSpec is invalid, returns nil. You can use this to parse ColorStrings.
 --- @param colorspec ColorSpec The ColorSpec to convert.
 --- @return {r:number, g:number, b:number, a:number}?
-function minetest.colorspec_to_table(colorspec) end
+function core.colorspec_to_table(colorspec) end

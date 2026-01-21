@@ -16,7 +16,7 @@ function VoxelManip:read_from_map(position1, position2) end
 ---  * if `light` is `true`, then lighting is automatically recalculated.
 ---    The default value is `true`.
 ---    If `light` is `false`, no light calculations happen, and you should correct
----    all modified blocks with `minetest.fix_light()` as soon as possible.
+---    all modified blocks with `core.fix_light()` as soon as possible.
 ---    Keep in mind that modifying the map where light is incorrect can cause more lighting bugs.
 --- @param light boolean? Default: `true`
 function VoxelManip:write_to_map(light) end
@@ -50,7 +50,7 @@ function VoxelManip:set_data(data) end
 --- function VoxelManip:update_map() end
 --- Set the lighting within the `VoxelManip` to a uniform value.
 ---  * `light` is a table, `{day=<0...15>, night=<0...15>}`
----  * To be used only by a `VoxelManip` object from `minetest.get_mapgen_object`.
+---  * To be used only by a `VoxelManip` object from `core.get_mapgen_object`.
 ---  * (`p1`, `p2`) is the area in which lighting is set, defaults to the whole area if left out.
 function VoxelManip:set_lighting(light, p1, p2) end
 
@@ -83,7 +83,7 @@ function VoxelManip:set_param2_data(param2_data) end
 
 --- Calculate lighting within the `VoxelManip`.
 ---  * To be used only by a `VoxelManip` object from
----    `minetest.get_mapgen_object`.
+---    `core.get_mapgen_object`.
 ---  * (`p1`, `p2`) is the area in which lighting is set, defaults to the whole
 ---    area if left out or nil. For almost all uses these should be left out
 ---    or nil to use the default.
@@ -102,7 +102,7 @@ function VoxelManip:calc_lighting(p1, p2, propagate_shadow) end
 function VoxelManip:update_liquids() end
 --- Returns `true` or `false` if the data in the voxel
 ---   manipulator had been modified since the last read from map, due to a call to
----   `minetest.set_data()` on the loaded area elsewhere.
+---   `core.set_data()` on the loaded area elsewhere.
 --- @return boolean
 function VoxelManip:was_modified() end
 
