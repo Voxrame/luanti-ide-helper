@@ -8,6 +8,9 @@
 --- @operator sub(Position): vector
 --- @operator mul(number)  : vector
 --- @operator div(number)  : vector
+--- @field x number
+--- @field y number
+--- @field z number
 vector = {}
 
 

@@ -41,7 +41,18 @@ PseudoRandom = {}
 --- @field y integer
 --- @field z integer
 
+--- Same as `vector`, but all fields are integers.
+--- @class IntegerVector: vector
+--- @operator unm          : IntegerVector
+--- @operator add(Position): IntegerVector
+--- @operator sub(Position): IntegerVector
+--- @operator mul(number)  : IntegerVector
+--- @operator div(number)  : IntegerVector
+--- @field x integer
+--- @field y integer
+--- @field z integer
 
+--- @alias PositionVector IntegerVector
 
 --- @class Position2d
 --- @field x integer
