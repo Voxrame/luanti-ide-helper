@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- Node Timers: a high resolution persistent per-node timer.

@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- Base class used by [`StorageRef`], [`NodeMetaRef`], [`ItemStackMetaRef`],

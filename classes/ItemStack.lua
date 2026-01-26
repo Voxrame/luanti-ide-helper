@@ -100,7 +100,7 @@ function ItemStack:peek_item(count) end
 function ItemStack:replace(item) end
 
 --- Take (and remove) up to n items from this stack; returns taken ItemStack; if n is omitted, n=1 is used
---- @param count number
+--- @param count? number
 --- @return ItemStack
 function ItemStack:take_item(count) end
 

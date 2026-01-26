@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class ObjectProperties
 local ObjectProperties = {
 	--- Defines the maximum and default HP of the entity

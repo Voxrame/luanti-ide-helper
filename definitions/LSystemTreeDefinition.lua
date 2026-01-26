@@ -1,3 +1,5 @@
+--- @meta
+
 
 --- @class LSystemTreeDefinition
 --- @field axiom          string  initial tree axiom

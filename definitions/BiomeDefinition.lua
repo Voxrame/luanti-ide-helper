@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class BiomeDefinition
 --- Definition of a biome for use with `core.register_biome`.
 local BiomeDefinition = {

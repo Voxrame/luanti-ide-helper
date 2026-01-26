@@ -1606,7 +1606,7 @@ function core.item_place_object(itemstack, placer, pointed_thing) end
 --- @param itemstack     ItemStack
 --- @param placer        Player|ObjectRef|nil
 --- @param pointed_thing pointed_thing
---- @param param2        number
+--- @param param2?       number
 --- @return ItemStack, vector|nil
 function core.item_place(itemstack, placer, pointed_thing, param2) end
 

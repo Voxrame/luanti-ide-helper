@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- Player metadata.
 --- Uses the same method of storage as the deprecated player attribute API, so
 --- data there will also be in player meta.

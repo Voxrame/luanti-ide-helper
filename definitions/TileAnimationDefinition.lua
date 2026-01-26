@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class TileAnimationDefinition: table
 local TileAnimationDefinition = {
 	--- @type string one of {"vertical_frames"|"sheet_2d"}

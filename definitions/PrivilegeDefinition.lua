@@ -1,4 +1,5 @@
---- @diagnostic disable: missing-return
+--- @meta
+
 
 --- Used by `core.register_privilege`.
 --- @class PrivilegeDefinition

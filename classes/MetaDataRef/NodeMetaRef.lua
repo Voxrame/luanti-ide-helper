@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- Node metadata: reference extra data and functionality stored in a node.

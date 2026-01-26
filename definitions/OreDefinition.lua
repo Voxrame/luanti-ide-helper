@@ -1,3 +1,5 @@
+--- @meta
+
 
 --- @class OreDefinition
 --- Defines an ore to be registered with `core.register_ore`.

@@ -1,3 +1,5 @@
+--- @meta
+
 
 --- Equivalent to `core.log(table.concat({...}, "\t"))`
 ---

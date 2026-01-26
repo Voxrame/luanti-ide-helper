@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class ABMDefinition
 local ABMDefinition = {
 	--- Descriptive label for profiling purposes (optional).

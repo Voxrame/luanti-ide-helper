@@ -1,4 +1,5 @@
---- @diagnostic disable: missing-return
+--- @meta
+
 
 --- A fast, bulk noise generator.
 ---

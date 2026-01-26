@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class HudDefinition
 local HudDefinition = {
 	--- Name of the HUD element.

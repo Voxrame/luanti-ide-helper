@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class TileDefinition
 local TileDefinition = {
 	--- @type string

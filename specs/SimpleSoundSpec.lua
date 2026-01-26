@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class SimpleSoundSpec
 local SimpleSoundSpec = {
 	--- Scales the gain specified in `SimpleSoundSpec`.

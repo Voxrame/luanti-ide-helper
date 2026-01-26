@@ -1,3 +1,5 @@
+--- @meta
+
 --- ItemStack metadata: reference extra data and functionality stored in a stack.
 --- Can be obtained via `item:get_meta()`.
 ---

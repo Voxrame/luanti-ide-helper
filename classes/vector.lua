@@ -1,4 +1,5 @@
---- @diagnostic disable: missing-return
+--- @meta
+
 
 --- @class vector: Position
 --- @operator eq           : boolean

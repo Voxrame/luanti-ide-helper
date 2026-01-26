@@ -1,3 +1,5 @@
+--- @meta
+
 
 --- A ColorString is a string that represents a color. It can be one of the following:
 ---  * a named color, e.g. `"red"`, `"blue"`, `"green"`, etc.

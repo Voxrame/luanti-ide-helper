@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- For 2D or 3D value noise or value noise maps:
 ---
 --- ```lua

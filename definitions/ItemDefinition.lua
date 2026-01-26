@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class ItemDefinition: table
 local ItemDefinition = {
     --- Can contain new lines. "\n" has to be used as new line character.

@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- `AreaStore` is a data structure to calculate intersections of 3D cuboid volumes and points.

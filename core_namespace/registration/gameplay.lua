@@ -1,5 +1,6 @@
 --- @meta
 
+
 --- Registers a crafting recipe.
 --- * Check recipe table syntax for different types below.
 --- [TODO]: Link to recipe table syntax documentation.

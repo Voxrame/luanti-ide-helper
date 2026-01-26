@@ -1,4 +1,4 @@
---- @mete
+--- @meta
 
 
 --- A schematic specifier identifies a schematic by either a filename to a Luanti Schematic file (.mts) or through raw data supplied through Lua, in the form of a table.

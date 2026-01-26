@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- Passed to `HTTPApiTable.fetch` callback. Returned by `HTTPApiTable.fetch_async_get`.
 ---@class HTTPRequestResult: table
 local HTTPRequestResult = {

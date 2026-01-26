@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- Used by `HTTPApiTable.fetch` and `HTTPApiTable.fetch_async`.
 ---@class HTTPRequest: table
 local HTTPRequest = {

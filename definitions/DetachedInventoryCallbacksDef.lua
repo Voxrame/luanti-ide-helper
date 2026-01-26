@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class DetachedInventoryCallbacksDef
 local DetachedInventoryCallbacksDef = {
 	--- Called when a player wants to move items inside the inventory.

@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- @class NodeDefinition: ItemDefinition
 local NodeDefinition = {
 

@@ -1,3 +1,6 @@
+--- @meta
+
+
 --- Mod metadata: per mod metadata, saved automatically.
 --- Can be obtained via `core.get_mod_storage()` during load time.
 ---

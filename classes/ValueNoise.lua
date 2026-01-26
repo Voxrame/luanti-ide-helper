@@ -1,4 +1,5 @@
---- @diagnostic disable: missing-return
+--- @meta
+
 
 --- A value noise generator. It can be created via ValueNoise() or core.get_value_noise().
 --- For core.get_value_noise(), the actual seed used is the noiseparams seed plus the world

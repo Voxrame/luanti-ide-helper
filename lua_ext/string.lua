@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- e.g. `"a,b":split(",")` returns `{"a","b"}`

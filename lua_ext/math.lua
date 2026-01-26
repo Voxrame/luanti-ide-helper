@@ -1,4 +1,4 @@
---- @diagnostic disable: missing-return
+--- @meta
 
 
 --- Get the hypotenuse of a triangle with legs x and y. Useful for distance calculation.

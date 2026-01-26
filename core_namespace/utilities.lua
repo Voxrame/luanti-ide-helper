@@ -1,4 +1,5 @@
---- @diagnostic disable: missing-return
+--- @meta
+
 
 --- Returns the currently loading mod's name, when loading a mod.
 ---  - Returns nil if not loading a mod.
