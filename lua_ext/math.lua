@@ -33,3 +33,10 @@ function math.factorial(x) end
 ---
 --- @return integer
 function math.round(x) end
+
+--- Returns `true` if `x` is neither an infinity nor a NaN, and `false` otherwise.
+---
+--- @param x number
+---
+--- @return boolean
+function math.isfinite(x) end

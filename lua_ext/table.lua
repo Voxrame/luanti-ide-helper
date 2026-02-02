@@ -47,10 +47,10 @@ function table.keyof(table, val) end
 --- Appends all values in `other_table` to table - uses `#table + 1` to find new indices.
 ---
 --- @generic value
---- @param table       table<number, value>
+--- @param table       table<integer, value>
 --- @param other_table table
 ---
---- @return table<number,value>
+--- @return table<integer,value>
 function table.insert_all(table, other_table) end
 
 
