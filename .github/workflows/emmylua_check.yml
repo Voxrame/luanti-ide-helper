@@ -21,4 +21,4 @@ jobs:
         run: cargo install emmylua_check
       
       - name: Run EmmyLua analysis
-        run: emmylua_check .
+        run: emmylua_check --warnings-as-errors .
