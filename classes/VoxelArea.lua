@@ -78,12 +78,12 @@ function VoxelArea:containsi(i) end
 --- @param max_x integer
 --- @param max_y integer
 --- @param max_z integer
---- @return fun(tbl: table<number, number>): number, number
+--- @return fun(tbl: table<integer, integer>): integer, integer
 function VoxelArea:iter(min_x, min_y, min_z, max_x, max_y, max_z) end
 
 --- returns an iterator that returns indices.
 ---  * from (`min_x`,`min_y`,`min_z`) to (`max_x`,`max_y`,`max_z`) in the order of `[z [y [x]]]`.
 --- @param min_pos Position
 --- @param max_pos Position
---- @return fun(tbl: table<number, number>): number, number
+--- @return fun(tbl: table<integer, integer>): integer, integer
 function VoxelArea:iterp(min_pos, max_pos) end
