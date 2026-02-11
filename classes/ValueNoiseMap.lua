@@ -21,37 +21,37 @@ ValueNoiseMap = {}
 
 --- Returns a `<size.x>` times `<size.y>` 2D array of 2D noise
 --- with values starting at `pos={x=,y=}`
---- @param pos MapPosition2d
+--- @param pos IntegerPosition2d
 --- @return table
 function ValueNoiseMap:get_2d_map(pos) end
 
 --- Returns a `<size.x>` times `<size.y>` times `<size.z>`
 --- 3D array of 3D noise with values starting at `pos={x=,y=,z=}`
---- @param pos MapPosition
+--- @param pos IntegerPosition
 --- @return table
 function ValueNoiseMap:get_3d_map(pos) end
 
 --- Returns a flat `<size.x * size.y>` element
 --- array of 2D noise with values starting at `pos={x=,y=}`
---- @param pos    MapPosition2d
+--- @param pos    IntegerPosition2d
 --- @param buffer table If `buffer` is not nil, this table will be used to store the result instead of creating a new table.
 --- @return table
 function ValueNoiseMap:get_2d_map_flat(pos, buffer) end
 
 --- Same as `get2dMap_flat`, but 3D noise
---- @param pos    MapPosition
+--- @param pos    IntegerPosition
 --- @param buffer table If `buffer` is not nil, this table will be used to store the result instead of creating a new table.
 --- @return table
 function ValueNoiseMap:get_3d_map_flat(pos, buffer) end
 
 --- Calculates the 2d noise map starting at `pos`. The result
 --- is stored internally.
---- @param pos MapPosition2d
+--- @param pos IntegerPosition2d
 function ValueNoiseMap:calc_2d_map(pos) end
 
 --- Calculates the 3d noise map starting at `pos`. The result
 --- is stored internally.
---- @param pos MapPosition
+--- @param pos IntegerPosition
 function ValueNoiseMap:calc_3d_map(pos) end
 
 --- In the form of an array,
