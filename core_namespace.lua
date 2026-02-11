@@ -36,28 +36,6 @@ PseudoRandom = {}
 
 --- See ./classes/InvRef.lua
 
---- @class Position
---- @field x integer
---- @field y integer
---- @field z integer
-
---- Same as `vector`, but all fields are integers.
---- @class IntegerVector: vector
---- @operator unm          : IntegerVector
---- @operator add(Position): IntegerVector
---- @operator sub(Position): IntegerVector
---- @operator mul(number)  : IntegerVector
---- @operator div(number)  : IntegerVector
---- @field x integer
---- @field y integer
---- @field z integer
-
---- @alias PositionVector IntegerVector
-
---- @class Position2d
---- @field x integer
---- @field y integer
-
 --- @class pointed_thing
 --- @field public type  string one of {"nothing"|"node"|"object"}
 --- @field public above Position refers to the node position in front of the pointed face (only if type=="node")
@@ -376,8 +354,8 @@ function core.register_on_punchnode(callback) end
 ---     on the VoxelManipulator object is not necessary and is disallowed.
 --- * `blockseed`: 64-bit seed number used for this chunk.
 ---
---- @overload fun(callback:fun(min_pos:Position, max_pos:Position, blockseed:number))
---- @param callback fun(vmanip:VoxelManip, min_pos:Position, max_pos:Position, blockseed:number)
+--- @overload fun(callback:fun(min_pos:MapPosition, max_pos:MapPosition, blockseed:number))
+--- @param callback fun(vmanip:VoxelManip, min_pos:MapPosition, max_pos:MapPosition, blockseed:number)
 function core.register_on_generated(callback) end
 --- * Called when a new player enters the world for the first time
 ---
@@ -421,7 +399,7 @@ function core.register_on_rightclickplayer(callback) end
 --- @field from string will be `"mod"` or `"engine"`
 --- @field object ObjectRef|Player|Entity
 --- @field node string|nil
---- @field node_pos Position|nil
+--- @field node_pos MapPosition|nil
 
 --- * Called when the player gets damaged or healed
 --- * `player`: ObjectRef of the player
@@ -760,7 +738,7 @@ function core.chat_send_player(name, text) end
 function core.format_chat_message(name, message) end
 
 -- Environment access:
---- @param pos  Position
+--- @param pos  MapPosition
 --- @param node NodeTable
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4840-L4840)
 function core.set_node(pos, node) end
@@ -771,6 +749,8 @@ function core.set_node(pos, node) end
 --- * e.g. `core.set_node({x=0, y=10, z=0}, {name="default:wood"})`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4841-L4845)
+--- @param pos  MapPosition
+--- @param node NodeTable
 function core.add_node(pos, node) end
 
 --- * Set node on all positions set in the first argument.
@@ -785,7 +765,7 @@ function core.add_node(pos, node) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4846-L4855)
 ---
---- @param positions Position[] {pos1, pos2, pos3, ...}
+--- @param positions MapPosition[] {pos1, pos2, pos3, ...}
 --- @param node      NodeTable
 function core.bulk_set_node(positions, node) end
 
@@ -794,7 +774,7 @@ function core.bulk_set_node(positions, node) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4856-L4857)
 ---
---- @param pos  Position
+--- @param pos  MapPosition
 --- @param node NodeTable
 function core.swap_node(pos, node) end
 
@@ -802,20 +782,20 @@ function core.swap_node(pos, node) end
 --- (Any existing metadata is deleted.)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4858-L4859)
---- @param pos Position
+--- @param pos MapPosition
 function core.remove_node(pos) end
 --- * Returns the node at the given position as table in the format
 ---   `{name="node_name", param1=0, param2=0}`,
 ---   returns `{name="ignore", param1=0, param2=0}` for unloaded areas.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4860-L4863)
----@param pos Position
+---@param pos MapPosition
 ---@return NodeTable
 function core.get_node(pos) end
 --- * Same as `get_node` but returns `nil` for unloaded areas.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4864-L4865)
---- @param pos Position
+--- @param pos MapPosition
 --- @return NodeTable|nil
 function core.get_node_or_nil(pos) end
 --- * Gets the light value at the given position. Note that the light value
@@ -825,7 +805,7 @@ function core.get_node_or_nil(pos) end
 --- * `nil` is returned e.g. when the map isn't loaded at `pos`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4866-L4873)
---- @param pos       Position    The position where to measure the light.
+--- @param pos       MapPosition The position where to measure the light.
 --- @param timeofday number|nil  `nil` for current time, `0` for night, `0.5` for day
 --- @return number|nil
 function core.get_node_light(pos, timeofday) end
@@ -838,6 +818,8 @@ function core.get_node_light(pos, timeofday) end
 ---   unlikely
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4874-L4881)
+--- @param pos       MapPosition The position where to measure the light.
+--- @param timeofday number|nil  `nil` for current time, `0` for night, `0.5` for day
 function core.get_natural_light(pos, timeofday) end
 --- * Calculates the artificial light (light from e.g. torches) value from the
 ---   `param1` value.
@@ -851,35 +833,43 @@ function core.get_artificial_light(param1) end
 --- * Place node with the same effects that a player would cause
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4889-L4890)
+--- @param pos  MapPosition
+--- @param node NodeTable
 function core.place_node(pos, node) end
 --- * Dig node with the same effects that a player would cause
 --- * Returns `true` if successful, `false` on failure (e.g. protected location)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4891-L4893)
+--- @param pos  MapPosition
 function core.dig_node(pos) end
 --- * Punch node with the same effects that a player would cause
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4894-L4895)
+--- @param pos  MapPosition
 function core.punch_node(pos) end
 --- * Change node into falling node
 --- * Returns `true` if successful, `false` on failure
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4896-L4898)
+--- @param pos  MapPosition
 function core.spawn_falling_node(pos) end
 --- * Get a table of positions of nodes that have metadata within a region
 ---   {pos1, pos2}.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4900-L4902)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.find_nodes_with_meta(pos1, pos2) end
 --- * Get a `NodeMetaRef` at that position
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4903-L4904)
---- @param pos Position
+--- @param pos MapPosition
 --- @return NodeMetaRef
 function core.get_meta(pos) end
 --- * Get `NodeTimerRef`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4905-L4906)
+--- @param pos MapPosition
 --- @return NodeTimerRef
 function core.get_node_timer(pos) end
 --- Spawn Lua-defined entity at
@@ -888,13 +878,17 @@ function core.get_node_timer(pos) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4908-L4910)
 --- `staticdata` [Optional] no info
+--- @param pos        Position
+--- @param name       string
+--- @param staticdata string?
 --- @return ObjectRef|Entity|nil
 function core.add_entity(pos, name, staticdata) end
 --- Spawn item
 --- * Returns `ObjectRef`, or `nil` if failed
---- @return ObjectRef|nil
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4911-L4912)
+--- @param pos   Position
+--- @return ObjectRef|nil
 function core.add_item(pos, item) end
 --- Get an `ObjectRef` to a player
 ---
@@ -943,7 +937,7 @@ function core.get_day_count() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4928-L4933)
 ---
---- @param pos              Position
+--- @param pos              MapPosition
 --- @param radius           number       using a maximum metric
 --- @param node_names       table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
 --- @param search_in_center boolean      Optional. If true `pos` is also checked for the nodes. (default: `false`).
@@ -959,13 +953,13 @@ function core.find_node_near(pos, radius, node_names, search_in_center) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4934-L4943)
 ---
---- @param pos1       Position     min positions of the area to search.
---- @param pos2       Position     max positions of the area to search.
---- @param node_names table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
---- @param grouped    boolean?     [optional] If true the return value is a table indexed by node name which contains lists of positions. (default: `false`).
+--- @param pos1      MapPosition  min positions of the area to search.
+--- @param pos2      MapPosition  max positions of the area to search.
+--- @param nodenames table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
+--- @param grouped   boolean?     [optional] If true the return value is a table indexed by node name which contains lists of positions. (default: `false`).
 ---
 --- @return (table<string,Position[]>|Position[]), (nil|table<string,number>)
-function core.find_nodes_in_area(pos1, pos2, node_names, grouped) end
+function core.find_nodes_in_area(pos1, pos2, nodenames, grouped) end
 --- Returns a
 ---   list of positions.
 --- * `nodenames`: e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
@@ -973,6 +967,9 @@ function core.find_nodes_in_area(pos1, pos2, node_names, grouped) end
 --- * Area volume is limited to 4,096,000 nodes
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4944-L4948)
+--- @param pos1       MapPosition  min positions of the area to search.
+--- @param pos2       MapPosition  max positions of the area to search.
+--- @param node_names table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
 function core.find_nodes_in_area_under_air(pos1, pos2, nodenames) end
 --- * Deprecated: renamed to `core.get_value_noise` in version 5.12.0.
 --- @deprecated
@@ -998,8 +995,8 @@ function core.get_value_noise(seeddiff, octaves, persistence, spread) end
 --- * Loads the manipulator from the map if positions are passed.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4955-L4957)
---- @param min_position Position? min position
---- @param max_position Position? max position
+--- @param min_position MapPosition? min position
+--- @param max_position MapPosition? max position
 --- @return VoxelManip
 function core.get_voxel_manip(min_position, max_position) end
 --- * Set the types of on-generate notifications that should be collected.
@@ -1058,10 +1055,12 @@ function core.get_mapgen_object(objectname) end
 --- * Returns the heat at the position, or `nil` on failure.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4977-L4978)
+--- @param pos MapPosition
 function core.get_heat(pos) end
 --- * Returns the humidity at the position, or `nil` on failure.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4979-L4980)
+--- @param pos MapPosition
 function core.get_humidity(pos) end
 --- * Returns a table containing:
 ---     * `biome` the biome id of the biome at that position
@@ -1070,6 +1069,7 @@ function core.get_humidity(pos) end
 --- * Or returns `nil` on failure.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4981-L4986)
+--- @param pos MapPosition
 function core.get_biome_data(pos) end
 --- * Returns the biome id, as used in the biomemap Mapgen object and returned
 ---   by `core.get_biome_data(pos)`, for a given biome_name string.
@@ -1157,12 +1157,18 @@ function core.get_noiseparams(name) end
 --- * `pos1` and `pos2` are optional and default to mapchunk minp and maxp.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5047-L5050)
+--- @param vm   VoxelManip
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.generate_ores(vm, pos1, pos2) end
 --- * Generate all registered decorations within the VoxelManip `vm` and in the
 ---   area from `pos1` to `pos2`.
 --- * `pos1` and `pos2` are optional and default to mapchunk minp and maxp.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5051-L5054)
+--- @param vm   VoxelManip
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.generate_decorations(vm, pos1, pos2) end
 --- * Clear all objects in the environment
 --- * Takes an optional table as an argument with the field `mode`.
@@ -1179,6 +1185,8 @@ function core.clear_objects(options) end
 --- * This function does not trigger map generation.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5063-L5066)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.load_area(pos1, pos2) end
 --- * Queue all blocks in the area from `pos1` to `pos2`, inclusive, to be
 ---   asynchronously fetched from memory, loaded from disk, or if inexistent,
@@ -1201,10 +1209,14 @@ function core.load_area(pos1, pos2) end
 ---       nil if the parameter was absent).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5067-L5086)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.emerge_area(pos1, pos2, callback, param) end
 --- * delete all mapblocks in the area from pos1 to pos2, inclusive
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5087-L5088)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.delete_area(pos1, pos2) end
 --- Returns `boolean, pos`
 --- * Checks if there is anything other than air between pos1 and pos2.
@@ -1214,6 +1226,8 @@ function core.delete_area(pos1, pos2) end
 --- * `pos2`: Second position
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5089-L5094)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.line_of_sight(pos1, pos2) end
 --- Returns `Raycast`
 --- * Creates a `Raycast` object.
@@ -1223,6 +1237,10 @@ function core.line_of_sight(pos1, pos2) end
 --- * `liquids`: if false, liquid nodes won't be returned. Default is `false`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5095-L5100)
+--- @param pos1    MapPosition
+--- @param pos2    MapPosition
+--- @param objects boolean?
+--- @param liquids boolean?
 function core.raycast(pos1, pos2, objects, liquids) end
 --- * returns table containing path that can be walked on
 --- * returns a table of 3D points representing a path from `pos1` to `pos2` or
@@ -1245,33 +1263,41 @@ function core.raycast(pos1, pos2, objects, liquids) end
 ---   on-the-fly
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5101-L5120)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.find_path(pos1,pos2,searchdistance,max_jump,max_drop,algorithm) end
 --- * spawns L-system tree at given `pos` with definition in `treedef` table
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5121-L5122)
+--- @param pos MapPosition
 function core.spawn_tree (pos, treedef) end
 --- * add node to liquid update queue
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5123-L5124)
+--- @param pos MapPosition
 function core.transforming_liquid_add(pos) end
 --- * get max available level for leveled node
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5125-L5126)
+--- @param pos MapPosition
 function core.get_node_max_level(pos) end
 --- * get level of leveled node (water, snow)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5127-L5128)
+--- @param pos MapPosition
 function core.get_node_level(pos) end
 --- * set level of leveled node, default `level` equals `1`
 --- * if `totallevel > maxlevel`, returns rest (`total-max`).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5129-L5131)
+--- @param pos MapPosition
 function core.set_node_level(pos, level) end
 --- * increase level of leveled node by level, default `level` equals `1`
 --- * if `totallevel > maxlevel`, returns rest (`total-max`)
 --- * `level` must be between -127 and 127
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5132-L5135)
+--- @param pos MapPosition
 function core.add_node_level(pos, level) end
 --- Returns `true`/`false`
 --- * resets the light in a cuboid-shaped part of
@@ -1291,12 +1317,15 @@ function core.add_node_level(pos, level) end
 ---   `true` otherwise
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5136-L5151)
+--- @param pos1 MapPosition
+--- @param pos2 MapPosition
 function core.fix_light(pos1, pos2) end
 --- * causes an unsupported `group:falling_node` node to fall and causes an
 ---   unattached `group:attached_node` node to fall.
 --- * does not spread these updates to neighbours.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5152-L5155)
+--- @param pos MapPosition
 function core.check_single_for_falling(pos) end
 --- * causes an unsupported `group:falling_node` node to fall and causes an
 ---   unattached `group:attached_node` node to fall.
@@ -1304,6 +1333,7 @@ function core.check_single_for_falling(pos) end
 ---   of nodes to fall.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5156-L5160)
+--- @param pos MapPosition
 function core.check_for_falling(pos) end
 --- * Returns a player spawn y co-ordinate for the provided (x, z)
 ---   co-ordinates, or `nil` for an unsuitable spawn point.
@@ -1658,11 +1688,13 @@ function core.item_eat(hp_change, replace_with_item) end
 --- * Calls functions registered by `core.register_on_punchnode()`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5389-L5390)
+--- @param pos MapPosition
 function core.node_punch(pos, node, puncher, pointed_thing) end
 --- * Checks if node can be dug, puts item into inventory, removes node
 --- * Calls functions registered by `core.registered_on_dignodes()`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5391-L5393)
+--- @param pos MapPosition
 function core.node_dig(pos, node, digger) end
 
 -- Sounds:
@@ -2231,12 +2263,14 @@ function core.calculate_knockback(player, hitter, time_from_last_punch,  tool_ca
 ---   (not saved between server runs).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5800-L5805)
+--- @param pos MapPosition
 function core.forceload_block(pos, transient) end
 --- * stops forceloading the position `pos`
 --- * If `transient` is `false` or absent, frees a persistent forceload.
 ---   If `true`, frees a transient forceload.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5807-L5810)
+--- @param pos MapPosition
 function core.forceload_free_block(pos, transient) end
 --- Returns an environment containing
 ---   insecure functions if the calling mod has been listed as trusted in the
