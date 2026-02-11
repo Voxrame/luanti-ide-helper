@@ -43,7 +43,6 @@ vector = {}
 --- @field z integer
 
 --- @alias MapPosition    IntegerPosition
---- @alias MapPosition2d  IntegerPosition2d
 --- @alias MapVector      IntegerVector
 --- @alias PositionVector IntegerVector
 
