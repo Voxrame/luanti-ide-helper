@@ -109,13 +109,13 @@ local BiomeDefinition = {
 	--- Biome is limited to a cuboid defined by these positions.
 	--- Any x, y or z field left undefined defaults to -31000 in 'min_pos' or
 	--- 31000 in 'max_pos'.
-	--- @type Position|{x:integer?,y:integer?,z:integer?}|nil
+	--- @type MapPosition|{x:integer?,y:integer?,z:integer?}|nil
 	max_pos = { x = 31000, y = 128, z = 31000 },
 	--- xyz limits for biome, an alternative to using 'y_min' and 'y_max'.
 	--- Biome is limited to a cuboid defined by these positions.
 	--- Any x, y or z field left undefined defaults to -31000 in 'min_pos' or
 	--- 31000 in 'max_pos'.
-	--- @type Position|{x:integer?,y:integer?,z:integer?}|nil
+	--- @type MapPosition|{x:integer?,y:integer?,z:integer?}|nil
 	min_pos = { x = -31000, y = 9, z = -31000 },
 
 	--- Vertical distance in nodes above 'y_max' over which the biome will

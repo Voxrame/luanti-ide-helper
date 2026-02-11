@@ -504,19 +504,19 @@ local NodeDefinition = {
 	--- infinite loop if it invokes the same callback.
 	---  Consider using `core.swap_node()` instead.
 	--- default: nil
-	--- @type fun(pos:Position)?
+	--- @type fun(pos:MapPosition)?
 	on_construct                  = nil,
 
 	--- Node destructor; called before removing node.
 	--- Not called for bulk node placement.
 	--- default: nil
-	--- @type fun(pos:Position)?
+	--- @type fun(pos:MapPosition)?
 	on_destruct                   = nil,
 
 	--- Node destructor; called after removing node.
 	--- Not called for bulk node placement.
 	--- default: nil
-	--- @type fun(pos:Position, old_node)?
+	--- @type fun(pos:MapPosition, old_node)?
 	after_destruct                = nil,
 
 	--- Called when a liquid (new_node) is about to flood old_node, if it has
@@ -526,7 +526,7 @@ local NodeDefinition = {
 	--- over and over again every liquid update interval.
 	--- Default: nil
 	--- Warning: making a liquid node 'floodable' will cause problems.
-	--- @type fun(pos:Position, old_node, new_node)?
+	--- @type fun(pos:MapPosition, old_node, new_node)?
 	on_flood                      = nil,
 
 
@@ -539,7 +539,7 @@ local NodeDefinition = {
 	--- be added directly to one or more of the dropped items.
 	--- @see ItemStackMetaRef
 	--- default: nil
-	--- @type fun(pos:Position, old_node, new_node, old_meta, drops:ItemStack[])?
+	--- @type fun(pos:MapPosition, old_node, new_node, old_meta, drops:ItemStack[])?
 	preserve_metadata             = nil,
 
 	--- Called after constructing node when node was placed using
@@ -547,7 +547,7 @@ local NodeDefinition = {
 	--- If return true no item is taken from itemstack.
 	--- `placer` may be any valid ObjectRef or nil.
 	--- default: nil
-	--- @type fun(pos:Position, placer:Player|ObjectRef|nil, itemstack:ItemStack, pointed_thing:pointed_thing)?
+	--- @type fun(pos:MapPosition, placer:Player|ObjectRef|nil, itemstack:ItemStack, pointed_thing:pointed_thing)?
 	after_place_node              = nil,
 
 	--- oldmetadata is in table format.
@@ -559,13 +559,13 @@ local NodeDefinition = {
 
 	--- Returns true if node can be dug, or false if not.
 	--- default: nil
-	--- @type fun(pos:Position, player:Player|ObjectRef|nil)?
+	--- @type fun(pos:MapPosition, player:Player|ObjectRef|nil)?
 	can_dig                       = nil,
 
 	--- default: core.node_punch
 	--- Called when puncher (an ObjectRef) punches the node at pos.
 	--- By default calls core.register_on_punchnode callbacks.
-	--- @type fun(pos:Position, node:NodeTable, puncher:Player|ObjectRef|nil, pointed_thing:pointed_thing)?
+	--- @type fun(pos:MapPosition, node:NodeTable, puncher:Player|ObjectRef|nil, pointed_thing:pointed_thing)?
 	on_punch                      = nil,
 
 	--- default: nil
@@ -577,14 +577,14 @@ local NodeDefinition = {
 	--- Note: pointed_thing can be nil, if a mod calls this function.
 	--- This function does not get triggered by clients <=0.4.16 if the
 	--- "formspec" node metadata field is set.
-	--- @type (fun(pos:Position, node:NodeTable, clicker:Player|ObjectRef, itemstack:ItemStack, pointed_thing:pointed_thing|nil):ItemStack|nil)?
+	--- @type (fun(pos:MapPosition, node:NodeTable, clicker:Player|ObjectRef, itemstack:ItemStack, pointed_thing:pointed_thing|nil):ItemStack|nil)?
 	on_rightclick                 = core.node_punch,
 
 	--- default: core.node_dig
 	--- By default checks privileges, wears out item (if tool) and removes node.
 	--- return true if the node was dug successfully, false otherwise.
 	--- Deprecated: returning nil is the same as returning true.
-	--- @type (fun(pos:Position, node:NodeTable, digger:Player): boolean)?
+	--- @type (fun(pos:MapPosition, node:NodeTable, digger:Player): boolean)?
 	on_dig                        = nil,
 
 	--- default: nil
@@ -592,53 +592,53 @@ local NodeDefinition = {
 	--- elapsed is the total time passed since the timer was started.
 	--- return true to run the timer for another cycle with the same timeout
 	--- value.
-	--- @type (fun(pos:Position, elapsed:number): boolean)?
+	--- @type (fun(pos:MapPosition, elapsed:number): boolean)?
 	on_timer                      = nil,
 
 	--- fields = {name1 = value1, name2 = value2, ...}
 	--- Called when an UI form (e.g. sign text input) returns data.
 	--- See core.register_on_player_receive_fields for more info.
 	--- default: nil
-	--- @type fun(pos:Position, formname:string, fields:table, sender:Player)?
+	--- @type fun(pos:MapPosition, formname:string, fields:table, sender:Player)?
 	on_receive_fields             = nil,
 
 	--- Called when a player wants to move items inside the inventory.
 	--- Return value: number of items allowed to move.
-	--- @type (fun(pos:Position, from_list:string, from_index:number, to_list:string, to_index:number, count:number, player:Player): number)?
+	--- @type (fun(pos:MapPosition, from_list:string, from_index:number, to_list:string, to_index:number, count:number, player:Player): number)?
 	allow_metadata_inventory_move = nil,
 
 	--- Called when a player wants to put something into the inventory.
 	--- Return value: number of items allowed to put.
 	--- Return value -1: Allow and don't modify item count in inventory.
-	--- @type (fun(pos:Position, listname:string, index:number, stack:ItemStack, player:Player): number)?
+	--- @type (fun(pos:MapPosition, listname:string, index:number, stack:ItemStack, player:Player): number)?
 	allow_metadata_inventory_put  = nil,
 
 	--- Called when a player wants to take something out of the inventory.
 	--- Return value: number of items allowed to take.
 	--- Return value -1: Allow and don't modify item count in inventory.
-	--- @type (fun(pos:Position, listname:string, index:number, stack:ItemStack, player:Player): number)?
+	--- @type (fun(pos:MapPosition, listname:string, index:number, stack:ItemStack, player:Player): number)?
 	allow_metadata_inventory_take = nil,
 
 	--- Called after the actual action has happened, according to what was
 	--- allowed.
 	--- No return value.
-	--- @type (fun(pos:Position, from_list:string, from_index:number, to_list:string, to_index:number, count:number, player:Player): void)?
+	--- @type (fun(pos:MapPosition, from_list:string, from_index:number, to_list:string, to_index:number, count:number, player:Player): void)?
 	on_metadata_inventory_move    = nil,
 	--- Called after the actual action has happened, according to what was
 	--- allowed.
 	--- No return value.
-	--- @type (fun(pos:Position, listname:string, index:number, stack:ItemStack, player:Player): void)?
+	--- @type (fun(pos:MapPosition, listname:string, index:number, stack:ItemStack, player:Player): void)?
 	on_metadata_inventory_put     = nil,
 	--- Called after the actual action has happened, according to what was
 	--- allowed.
 	--- No return value.
-	--- @type (fun(pos:Position, listname:string, index:number, stack:ItemStack, player:Player): void)?
+	--- @type (fun(pos:MapPosition, listname:string, index:number, stack:ItemStack, player:Player): void)?
 	on_metadata_inventory_take    = nil,
 
 	--- intensity: 1.0 = mid range of regular TNT.
 	--- If defined, called when an explosion touches the node, instead of
 	--- removing the node.
-	--- @type (fun(pos:Position, intensity:number): void)?
+	--- @type (fun(pos:MapPosition, intensity:number): void)?
 	on_blast                      = nil,
 
 	--- stores which mod actually registered a node

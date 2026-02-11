@@ -29,7 +29,7 @@ local LBMDefinition = {
     --- Function triggered for each qualifying node.
     --- `dtime` is the in-game time (in seconds) elapsed since the mapblock
     --- was last active (available since 5.7.0).
-	--- @type fun(pos:Position, node:NodeTable, dtime:number)?
+	--- @type fun(pos:MapPosition, node:NodeTable, dtime:number)?
     action = function(pos, node, dtime) end,
 
     --- Function triggered with a list of all applicable node positions at once.
@@ -37,6 +37,6 @@ local LBMDefinition = {
     --- - Available since `core.features.bulk_lbms` (5.10.0)
     --- - `dtime` is the in-game time (in seconds) elapsed since the mapblock
     --- was last active (available since 5.7.0).
-	--- @type fun(pos_list:Position[], dtime:number)?
+	--- @type fun(pos_list:MapPosition[], dtime:number)?
     bulk_action = function(pos_list, dtime) end,
 }

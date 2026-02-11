@@ -6,9 +6,9 @@ VoxelManip = {}
 
 --- Loads a chunk of map into the VoxelManip object containing the region formed by `p1` and `p2`.
 ---  * returns actual emerged `pmin`, actual emerged `pmax`
---- @param position1 Position min position for load part of map
---- @param position2 Position max position for load part of map
---- @return Position, Position
+--- @param position1 MapPosition min position for load part of map
+--- @param position2 MapPosition max position for load part of map
+--- @return MapPosition, MapPosition
 function VoxelManip:read_from_map(position1, position2) end
 
 --- Writes the data loaded from the `VoxelManip` back to the map.
@@ -22,12 +22,12 @@ function VoxelManip:read_from_map(position1, position2) end
 function VoxelManip:write_to_map(light) end
 
 --- Returns a `MapNode` table of the node currently loaded in the `VoxelManip` at that position.
---- @param pos Position
+--- @param pos MapPosition
 --- @return MapNode
 function VoxelManip:get_node_at(pos) end
 
 --- Sets a specific `MapNode` in the `VoxelManip` at that position.
---- @param pos  Position
+--- @param pos  MapPosition
 --- @param node MapNode
 function VoxelManip:set_node_at(pos, node) end
 
@@ -90,11 +90,11 @@ function VoxelManip:set_param2_data(param2_data) end
 ---  * `propagate_shadow` is an optional boolean deciding whether shadows in a
 ---    generated mapchunk above are propagated down into the mapchunk, defaults
 ---    to `true` if left out.
---- @overload fun(p1:Position, p2:Position)
+--- @overload fun(p1:MapPosition, p2:MapPosition)
 --- @overload fun(propagate_shadow:boolean)
 --- @overload fun()
---- @param p1 Position
---- @param p2 Position
+--- @param p1 MapPosition
+--- @param p2 MapPosition
 --- @param propagate_shadow boolean
 function VoxelManip:calc_lighting(p1, p2, propagate_shadow) end
 
@@ -107,5 +107,5 @@ function VoxelManip:update_liquids() end
 function VoxelManip:was_modified() end
 
 --- Returns actual emerged minimum and maximum positions.
---- @return Position, Position
+--- @return MapPosition, MapPosition
 function VoxelManip:get_emerged_area() end

@@ -41,7 +41,7 @@ local NoiseParams = {
 	--- `spread` is a vector with values for x, y, z to allow the noise variation to be
 	--- stretched or compressed in the desired axes.
 	--- Values are positive numbers.
-	--- @type Position
+	--- @type MapPosition
 	spread = {x=1,y=1,z=1},
 
 	--- This is a whole number that determines the entire pattern of the noise

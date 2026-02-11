@@ -21,37 +21,37 @@ ValueNoiseMap = {}
 
 --- Returns a `<size.x>` times `<size.y>` 2D array of 2D noise
 --- with values starting at `pos={x=,y=}`
---- @param pos Position2d
+--- @param pos MapPosition2d
 --- @return table
 function ValueNoiseMap:get_2d_map(pos) end
 
 --- Returns a `<size.x>` times `<size.y>` times `<size.z>`
 --- 3D array of 3D noise with values starting at `pos={x=,y=,z=}`
---- @param pos Position
+--- @param pos MapPosition
 --- @return table
 function ValueNoiseMap:get_3d_map(pos) end
 
 --- Returns a flat `<size.x * size.y>` element
 --- array of 2D noise with values starting at `pos={x=,y=}`
---- @param pos    Position2d
+--- @param pos    MapPosition2d
 --- @param buffer table If `buffer` is not nil, this table will be used to store the result instead of creating a new table.
 --- @return table
 function ValueNoiseMap:get_2d_map_flat(pos, buffer) end
 
 --- Same as `get2dMap_flat`, but 3D noise
---- @param pos    Position
+--- @param pos    MapPosition
 --- @param buffer table If `buffer` is not nil, this table will be used to store the result instead of creating a new table.
 --- @return table
 function ValueNoiseMap:get_3d_map_flat(pos, buffer) end
 
 --- Calculates the 2d noise map starting at `pos`. The result
 --- is stored internally.
---- @param pos Position2d
+--- @param pos MapPosition2d
 function ValueNoiseMap:calc_2d_map(pos) end
 
 --- Calculates the 3d noise map starting at `pos`. The result
 --- is stored internally.
---- @param pos Position
+--- @param pos MapPosition
 function ValueNoiseMap:calc_3d_map(pos) end
 
 --- In the form of an array,
@@ -71,8 +71,8 @@ function ValueNoiseMap:calc_3d_map(pos) end
 --- noise:calc_3d_map({x=1000, y=1000, z=1000})
 --- noisevals = noise:get_map_slice({x=24, z=1}, {x=1, z=1})
 --- ```
---- @param slice_offset {x:number?,y:number?,z:number?}
---- @param slice_size   {x:number?,y:number?,z:number?}
+--- @param slice_offset {x:integer?,y:integer?,z:integer?}
+--- @param slice_size   {x:integer?,y:integer?,z:integer?}
 --- @param buffer       table If `buffer` is not nil, this table will be used to store the result instead of creating a new table.
 --- @return table
 function ValueNoiseMap:get_map_slice(slice_offset, slice_size, buffer) end
