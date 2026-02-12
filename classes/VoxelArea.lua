@@ -22,7 +22,7 @@ VoxelArea = {}
 function VoxelArea:new(cuboid) end
 
 --- returns a 3D vector containing the size of the area formed by `MinEdge` and `MaxEdge`.
---- @return MapPosition
+--- @return IntegerPosition
 function VoxelArea:getExtent() end
 
 --- returns the volume of the area formed by `MinEdge` and `MaxEdge`.

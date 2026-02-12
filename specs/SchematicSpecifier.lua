@@ -6,7 +6,7 @@
 local SchematicSpecifier = {
 	--- Size of the schematic.
 	--- Vector containing the dimensions of the provided schematic. (required field)
-	--- @type MapPosition
+	--- @type IntegerPosition
 	size = { x = 0, y = 0, z = 0 },
 
 	--- List of Y-slice probabilities.

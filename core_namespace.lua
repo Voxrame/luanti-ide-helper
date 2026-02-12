@@ -953,13 +953,13 @@ function core.find_node_near(pos, radius, node_names, search_in_center) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4934-L4943)
 ---
---- @param pos1      MapPosition  min positions of the area to search.
---- @param pos2      MapPosition  max positions of the area to search.
---- @param nodenames table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
---- @param grouped   boolean?     [optional] If true the return value is a table indexed by node name which contains lists of positions. (default: `false`).
+--- @param pos1       MapPosition  min positions of the area to search.
+--- @param pos2       MapPosition  max positions of the area to search.
+--- @param node_names table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
+--- @param grouped    boolean?     [optional] If true the return value is a table indexed by node name which contains lists of positions. (default: `false`).
 ---
 --- @return (table<string,Position[]>|Position[]), (nil|table<string,number>)
-function core.find_nodes_in_area(pos1, pos2, nodenames, grouped) end
+function core.find_nodes_in_area(pos1, pos2, node_names, grouped) end
 --- Returns a
 ---   list of positions.
 --- * `nodenames`: e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
@@ -970,7 +970,7 @@ function core.find_nodes_in_area(pos1, pos2, nodenames, grouped) end
 --- @param pos1       MapPosition  min positions of the area to search.
 --- @param pos2       MapPosition  max positions of the area to search.
 --- @param node_names table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
-function core.find_nodes_in_area_under_air(pos1, pos2, nodenames) end
+function core.find_nodes_in_area_under_air(pos1, pos2, node_names) end
 --- * Deprecated: renamed to `core.get_value_noise` in version 5.12.0.
 --- @deprecated
 --- @param  noiseparams NoiseParams
