@@ -15,11 +15,11 @@
 ValueNoise = {}
 
 --- Returns 2D noise value at `pos={x=,y=}`
---- @param pos Position2d
+--- @param pos IntegerPosition2d
 --- @return number
 function ValueNoise:get_2d(pos) end
 
 --- Returns 3D noise value at `pos={x=,y=,z=}`
---- @param pos Position
+--- @param pos IntegerPosition
 --- @return number
 function ValueNoise:get_3d(pos) end

@@ -57,6 +57,6 @@ local ABMDefinition = {
 	--- mapblock plus all 26 neighboring mapblocks. If any neighboring
 	--- mapblocks are unloaded an estimate is calculated for them based on
 	--- loaded mapblocks.
-	--- @type fun(pos:Position, node:NodeTable, active_object_count:number, active_object_count_wider:number)
+	--- @type fun(pos:MapPosition, node:NodeTable, active_object_count:number, active_object_count_wider:number)
 	action            = function(pos, node, active_object_count, active_object_count_wider) end,
 }

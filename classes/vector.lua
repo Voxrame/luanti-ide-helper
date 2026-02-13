@@ -1,5 +1,22 @@
 --- @meta
 
+--- @class Position
+--- @field x number
+--- @field y number
+--- @field z number
+
+--- @class IntegerPosition: Position
+--- @field x integer
+--- @field y integer
+--- @field z integer
+
+--- @class Position2d
+--- @field x number
+--- @field y number
+
+--- @class IntegerPosition2d: Position2d
+--- @field x integer
+--- @field y integer
 
 --- @class vector: Position
 --- @operator eq           : boolean
@@ -13,6 +30,21 @@
 --- @field z number
 vector = {}
 
+--- Same as `vector`, but all fields are integers.
+--- @class IntegerVector: vector
+--- @operator eq           : boolean
+--- @operator unm          : IntegerVector
+--- @operator add(Position): IntegerVector
+--- @operator sub(Position): IntegerVector
+--- @operator mul(number)  : IntegerVector
+--- @operator div(number)  : IntegerVector
+--- @field x integer
+--- @field y integer
+--- @field z integer
+
+--- @alias MapPosition    IntegerPosition
+--- @alias MapVector      IntegerVector
+--- @alias PositionVector IntegerVector
 
 --- Creates a new vector `(a, b, c)`.
 --- * Deprecated: `vector.new()` does the same as `vector.zero()` and

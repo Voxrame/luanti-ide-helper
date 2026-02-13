@@ -7,8 +7,8 @@
 --- `VoxelArea:new({MinEdge = pmin, MaxEdge = pmax})`.
 --- The coordinates are *inclusive*, like most other things in Luanti.
 ---
---- @field MinEdge Position
---- @field MaxEdge Position
+--- @field MinEdge MapPosition
+--- @field MaxEdge MapPosition
 --- @field ystride integer
 --- @field zstride integer
 VoxelArea = {}
@@ -17,12 +17,12 @@ VoxelArea = {}
 ---
 --- Also you can create an instance via `VoxelArea(pmin, pmax)`
 ---
---- @param cuboid { MinEdge: Position, MaxEdge: Position }
+--- @param cuboid { MinEdge: MapPosition, MaxEdge: MapPosition }
 --- @return VoxelArea
 function VoxelArea:new(cuboid) end
 
 --- returns a 3D vector containing the size of the area formed by `MinEdge` and `MaxEdge`.
---- @return Position
+--- @return IntegerPosition
 function VoxelArea:getExtent() end
 
 --- returns the volume of the area formed by `MinEdge` and `MaxEdge`.
@@ -44,13 +44,13 @@ function VoxelArea:index(x, y, z) end
 --- same functionality as `index(x, y, z)` but takes a vector.
 ---     * As with `index(x, y, z)`, the components of `p` must be integers, and `p`
 ---       is not checked for being inside the area volume.
---- @param position Position
+--- @param position MapPosition
 --- @return integer
 function VoxelArea:indexp(position) end
 
 --- returns the absolute position vector corresponding to index `i`.
 --- @param i integer
---- @return Position
+--- @return MapPosition
 function VoxelArea:position(i) end
 
 --- check if (`x`,`y`,`z`) is inside area formed by `MinEdge` and `MaxEdge`.
@@ -61,7 +61,7 @@ function VoxelArea:position(i) end
 function VoxelArea:contains(x, y, z) end
 
 --- check if Position(`x`,`y`,`z`) is inside area formed by `MinEdge` and `MaxEdge`.
---- @param position Position
+--- @param position MapPosition
 --- @return boolean
 function VoxelArea:containsp(position) end
 
@@ -83,7 +83,7 @@ function VoxelArea:iter(min_x, min_y, min_z, max_x, max_y, max_z) end
 
 --- returns an iterator that returns indices.
 ---  * from (`min_x`,`min_y`,`min_z`) to (`max_x`,`max_y`,`max_z`) in the order of `[z [y [x]]]`.
---- @param min_pos Position
---- @param max_pos Position
+--- @param min_pos MapPosition
+--- @param max_pos MapPosition
 --- @return fun(tbl: table<integer, integer>): integer, integer
 function VoxelArea:iterp(min_pos, max_pos) end
