@@ -1670,8 +1670,8 @@ function core.item_secondary_use(itemstack, user) end
 --- * returns the leftover itemstack
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5376-L5378)
---- @param itemstack ItemStack|ItemStackString
---- @param dropper   Player|ObjectRef
+--- @param itemstack ItemStack
+--- @param dropper   Player|ObjectRef|nil
 --- @param pos       Position
 --- @return ItemStack
 function core.item_drop(itemstack, dropper, pos) end
