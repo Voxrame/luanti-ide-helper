@@ -145,3 +145,12 @@ function ObjectRef:get_nametag_attributes() end
 ---      }
 --- ```
 function ObjectRef:set_nametag_attributes(attributes) end
+--- Returns a global unique identifier (a string)
+--- For players, this is a player name.
+--- For Lua entities, this is a uniquely generated string, guaranteed not to collide with player names.
+--- example: `@bGh3p2AbRE29Mb4biqX6OA`
+--- GUIDs only use printable ASCII characters.
+--- GUIDs persist between object reloads, and their format is guaranteed not to change.
+--- Thus you can use the GUID to identify an object in a particular world online and offline.
+--- @return string
+function ObjectRef:get_guid()
