@@ -2326,6 +2326,9 @@ core.registered_tools = {}
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5846-L5850)
 --- @type table|EntityDefinition[]
 core.registered_entities = {}
+--- * Map of active object references, indexed by object GUID
+core.objects_by_guid = {}
+--- * **Obsolete**: Use `core.objects_by_guid` instead. GUIDs are strictly more useful than active object IDs.
 --- * Map of object references, indexed by active object id
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5851-L5852)
