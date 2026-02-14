@@ -1692,9 +1692,10 @@ function core.item_eat(hp_change, replace_with_item) end
 function core.node_punch(pos, node, puncher, pointed_thing) end
 --- * Checks if node can be dug, puts item into inventory, removes node
 --- * Calls functions registered by `core.registered_on_dignodes()`
----
+--- * Returns `true` if the node was dig.
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5391-L5393)
 --- @param pos MapPosition
+--- @return boolean
 function core.node_dig(pos, node, digger) end
 
 -- Sounds:
