@@ -28,6 +28,6 @@ local ChatCommandDefinition = {
 	--- Called when command is run. Returns boolean success and text output.
 	--- Special case: The help message is shown to the player if `func`
 	--- returns false without a text output.
-	--- @type fun(name:string, param:string):boolean,string
+	--- @type fun(name:string, param:string):boolean,string?
 	func = function(name, param) end,
 }
