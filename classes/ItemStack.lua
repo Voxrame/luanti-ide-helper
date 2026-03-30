@@ -2,6 +2,7 @@
 
 
 --- @class ItemStack
+--- @overload fun(x:ItemStack|ItemStackString|ItemStackTable|nil):ItemStack
 ItemStack = {}
 
 --- @class ItemStackTable: table
