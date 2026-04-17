@@ -571,14 +571,14 @@ function core.register_craft_predict(callback) end
 ---   moved. A value of `-1` for `take` will make the source stack infinite.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4720-L4731)
---- @param callback fun(player:ObjectRef, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table)
+--- @param callback fun(player:ObjectRef, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table):integer?
 function core.register_allow_player_inventory_action(callback) end
 --- * Called after a take, put or move event from/to/in a player inventory
 --- * Function arguments: see `core.register_allow_player_inventory_action`
 --- * Does not accept or handle any return value.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4732-L4735)
---- @param callback fun(player:ObjectRef, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table)
+--- @param callback fun(player:ObjectRef, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table):integer?
 function core.register_on_player_inventory_action(callback) end
 --- * Called by `builtin` and mods when a player violates protection at a
 ---   position (eg, digs a node or punches a protected entity).
