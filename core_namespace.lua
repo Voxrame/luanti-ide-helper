@@ -557,7 +557,7 @@ function core.register_on_craft(callback) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4717-L4719)
 --- @param callback fun(itemstack, player, old_craft_grid, craft_inv)
-function core.register_craft_predict() end
+function core.register_craft_predict(callback) end
 --- * Determines how much of a stack may be taken, put or moved to a
 ---   player inventory.
 --- * `player` (type `ObjectRef`) is the player who modified the inventory
@@ -572,14 +572,14 @@ function core.register_craft_predict() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4720-L4731)
 --- @param callback fun(player, action, inventory, inventory_info)
-function core.register_allow_player_inventory_action() end
+function core.register_allow_player_inventory_action(callback) end
 --- * Called after a take, put or move event from/to/in a player inventory
 --- * Function arguments: see `core.register_allow_player_inventory_action`
 --- * Does not accept or handle any return value.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4732-L4735)
 --- @param callback fun(player, action, inventory, inventory_info)
-function core.register_on_player_inventory_action() end
+function core.register_on_player_inventory_action(callback) end
 --- * Called by `builtin` and mods when a player violates protection at a
 ---   position (eg, digs a node or punches a protected entity).
 --- * The registered functions can be called using
@@ -590,40 +590,40 @@ function core.register_on_player_inventory_action() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4736-L4743)
 --- @param callback fun(pos, name)
-function core.register_on_protection_violation() end
+function core.register_on_protection_violation(callback) end
 --- * Called when an item is eaten, by `core.item_eat`
 --- * Return `itemstack` to cancel the default item eat response (i.e.: hp increase).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4744-L4746)
 --- @param callback fun(hp_change, replace_with_item, itemstack, user, pointed_thing)
-function core.register_on_item_eat() end
+function core.register_on_item_eat(callback) end
 --- * Called when `granter` grants the priv `priv` to `name`.
 --- * Note that the callback will be called twice if it's done by a player,
 ---   once with granter being the player name, and again with granter being nil.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4747-L4750)
 --- @param callback fun(name, granter, priv)
-function core.register_on_priv_grant() end
+function core.register_on_priv_grant(callback) end
 --- * Called when `revoker` revokes the priv `priv` from `name`.
 --- * Note that the callback will be called twice if it's done by a player,
 ---   once with revoker being the player name, and again with revoker being nil.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4751-L4754)
 --- @param callback fun(name, revoker, priv)
-function core.register_on_priv_revoke() end
+function core.register_on_priv_revoke(callback) end
 --- * Called when `name` user connects with `ip`.
 --- * Return `true` to by pass the player limit
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4755-L4757)
 --- @param callback fun(name, ip)
-function core.register_can_bypass_userlimit() end
+function core.register_can_bypass_userlimit(callback) end
 --- * Called when an incoming mod channel message is received
 --- * You should have joined some channels to receive events.
 --- * If message comes from a server mod, `sender` field is an empty string.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4758-L4761)
 --- @param callback fun(channel_name, sender, message)
-function core.register_on_modchannel_message() end
+function core.register_on_modchannel_message(callback) end
 
 -- Setting-related:
 --- @type Settings
