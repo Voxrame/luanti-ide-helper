@@ -44,7 +44,7 @@ function ItemStack:get_definition() end
 --- @return number
 function ItemStack:get_free_space() end
 
---- @return MetaDataRef
+--- @return ItemStackMetaRef
 function ItemStack:get_meta() end
 
 --- Returns a string, for compatibility reasons this is equal to get_meta():get_string("")
@@ -52,7 +52,7 @@ function ItemStack:get_meta() end
 function ItemStack:get_metadata() end
 
 --- Returns item name (e.g. "default:stone")
---- @return string
+--- @return ItemStackString
 function ItemStack:get_name() end
 
 --- Returns true/false (success), clears item on failure
