@@ -2039,6 +2039,9 @@ function core.get_position_from_hash(hash) end
 --- * Get rating of a group of an item. (`0` means: not in group)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5654-L5655)
+--- @param name  string
+--- @param group string
+--- @return      integer
 function core.get_item_group(name, group) end
 --- Returns a rating
 --- * Deprecated: An alias for the former.
