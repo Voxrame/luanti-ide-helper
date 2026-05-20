@@ -29,7 +29,7 @@ function ItemStack:add_wear(amount) end
 function ItemStack:clear() end
 
 --- Returns number of items on the stack
---- @return number
+--- @return integer
 function ItemStack:get_count() end
 
 --- Returns true/false (success), clears item on failure
