@@ -31,7 +31,7 @@
 vector = {}
 
 --- Same as `vector`, but all fields are integers.
---- @class IntegerVector: vector
+--- @class IntegerVector: vector, IntegerPosition
 --- @operator eq           : boolean
 --- @operator unm          : IntegerVector
 --- @operator add(Position): IntegerVector
