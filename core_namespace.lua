@@ -2037,10 +2037,11 @@ function core.hash_node_position(pos) end
 function core.get_position_from_hash(hash) end
 --- Returns a rating
 --- * Get rating of a group of an item. (`0` means: not in group)
+--- * If `group` is `nil`, returns `0`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5654-L5655)
 --- @param name  string
---- @param group string
+--- @param group string|nil
 --- @return      integer
 function core.get_item_group(name, group) end
 --- Returns a rating

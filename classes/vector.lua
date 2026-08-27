@@ -153,9 +153,11 @@ function vector:combine(v2, func) end
 function vector:equals(other) end
 
 --- Returns in order minp, maxp vectors of the cuboid defined by `v1`, `v2`.
---- @param v1 Position
---- @param v2 Position
---- @return vector minp, vector maxp
+--- @param v1 Position|IntegerPosition
+--- @param v2 Position|IntegerPosition
+--- @return vector|IntegerVector minp, vector|IntegerVector maxp
+--- @overload fun(v1: Position, v2: Position): vector, vector
+--- @overload fun(v1: IntegerPosition, v2: IntegerPosition): IntegerVector, IntegerVector
 function vector.sort(v1, v2) end
 
 --- Returns the angle between vectors in radians.
@@ -198,29 +200,38 @@ function vector.in_area(pos, min, max) end
 --- Returns a random integer position in area formed by `min` and `max`.
 --- - `min` and `max` are inclusive.
 --- - You can use `vector.sort` if you have two vectors and don't know which are the minimum and the maximum.
---- @param min Position
---- @param max Position
---- @return vector
+--- @param min MapPosition
+--- @param max MapPosition
+--- @return MapVector
 function vector.random_in_area(min, max) end
 
 --- Returns a vector.
 --- - If `x` is a vector: Returns the sum of the vector and `x`.
 --- - If `x` is a number: Adds `x` to each component of the vector.
---- @param x Position|number
+--- @param x Position|IntegerPosition|number|integer
 --- @return vector
+--- @overload fun(self: IntegerVector, x: IntegerPosition|integer): IntegerVector
+--- @overload fun(self: IntegerVector, x: Position|number): vector
+--- @overload fun(self: vector, x: Position|IntegerPosition|number|integer): vector
 function vector:add(x) end
 
 --- Returns a vector.
 --- - If `x` is a vector: Returns the difference of the vector and `x`.
 --- - If `x` is a number: Subtracts `x` from each component of the vector.
---- @param x Position|number
+--- @param x Position|IntegerPosition|number|integer
 --- @return vector
+--- @overload fun(self: IntegerVector, x: IntegerPosition|integer): IntegerVector
+--- @overload fun(self: IntegerVector, x: Position|number): vector
+--- @overload fun(self: vector, x: Position|IntegerPosition|number|integer): vector
 function vector:subtract(x) end
 
 --- Returns a scaled vector.
 --- - Deprecated: If `scalar` is a vector: Returns the Schur product.
---- @param scalar number|Position
+--- @param scalar Position|IntegerPosition|number|integer
 --- @return vector
+--- @overload fun(self: IntegerVector, scalar: IntegerPosition|integer): IntegerVector
+--- @overload fun(self: IntegerVector, scalar: Position|number): vector
+--- @overload fun(self: vector, scalar: Position|IntegerPosition|number|integer): vector
 function vector:multiply(scalar) end
 
 --- Returns a scaled vector.
