@@ -638,7 +638,7 @@ local NodeDefinition = {
 	--- intensity: 1.0 = mid range of regular TNT.
 	--- If defined, called when an explosion touches the node, instead of
 	--- removing the node.
-	--- @type (fun(pos:MapPosition, intensity:number): void)?
+	--- @type (fun(pos:MapPosition, intensity?:number): void)?
 	on_blast                      = nil,
 
 	--- stores which mod actually registered a node

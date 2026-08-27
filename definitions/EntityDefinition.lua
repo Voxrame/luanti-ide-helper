@@ -44,7 +44,7 @@ local EntityDefinition = {
 	--- @param tool_capabilities table|nil
 	--- @param dir vector
 	--- @param damage number
-	--- @return boolean
+	--- @return boolean?
 	on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage) end,
 	--- * Called when the object dies.
 	--- * `killer`: an `ObjectRef` (can be `nil`)
