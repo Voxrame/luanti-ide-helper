@@ -27,3 +27,4 @@ jobs:
           repo: ${{ matrix.repo }}
           token: ${{ secrets.IDE_HELPER_UP_SUBMODULE_TOKEN }}
           wait-for-completion: true
+          wait-for-completion-interval: 10s
