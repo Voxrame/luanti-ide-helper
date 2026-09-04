@@ -1,0 +1,29 @@
+name: Notify Other Repositories
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+
+  notify:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - repo: Voxrame/luanti-ide-helper-vscode
+            environment: vscode-extension
+
+    environment: ${{ matrix.environment }}
+
+    steps:
+      - name: Trigger and Wait for Submodule Update
+        uses: the-actions-org/workflow-dispatch@v4
+        with:
+          workflow: ${{ matrix.workflow_file || 'update-library.yml' }}
+          repo: ${{ matrix.repo }}
+          token: ${{ secrets.IDE_HELPER_UP_SUBMODULE_TOKEN }}
+          wait-for-completion: true
