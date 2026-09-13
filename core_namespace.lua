@@ -365,8 +365,8 @@ function core.register_on_punchnode(callback) end
 ---     on the VoxelManipulator object is not necessary and is disallowed.
 --- * `blockseed`: 64-bit seed number used for this chunk.
 ---
---- @overload fun(callback:fun(min_pos:MapPosition, max_pos:MapPosition, blockseed:number))
---- @param callback fun(vmanip:VoxelManip, min_pos:MapPosition, max_pos:MapPosition, blockseed:number)
+--- @overload fun(callback:fun(vmanip:VoxelManip, min_pos:MapVector, max_pos:MapVector, blockseed:number))
+--- @param callback fun(min_pos:MapVector, max_pos:MapVector, blockseed:number)
 function core.register_on_generated(callback) end
 
 --- * Called when a new player enters the world for the first time
@@ -413,7 +413,7 @@ function core.register_on_rightclickplayer(callback) end
 --- @field from string will be `"mod"` or `"engine"`
 --- @field object ObjectRef|Player|Entity
 --- @field node string|nil
---- @field node_pos MapPosition|nil
+--- @field node_pos MapVector|nil
 
 --- * Called when the player gets damaged or healed
 --- * `player`: ObjectRef of the player

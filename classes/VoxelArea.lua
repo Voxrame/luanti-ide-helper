@@ -50,7 +50,7 @@ function VoxelArea:indexp(position) end
 
 --- returns the absolute position vector corresponding to index `i`.
 --- @param i integer
---- @return MapPosition
+--- @return MapVector
 function VoxelArea:position(i) end
 
 --- check if (`x`,`y`,`z`) is inside area formed by `MinEdge` and `MaxEdge`.
