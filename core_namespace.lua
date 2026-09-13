@@ -98,6 +98,7 @@ function core.get_background_escape_sequence(color) end
 --- @param str string
 --- @return string
 function core.strip_foreground_colors(str) end
+
 --- * Removes background colors added by `get_background_escape_sequence`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L3121-L3122)
@@ -190,18 +191,21 @@ function core.formspec_escape(string) end
 --- @param arg any
 --- @return boolean
 function core.is_yes(arg) end
+
 --- * returns true when the passed number represents NaN.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L3267-L3268)
 --- @param arg any
 --- @return boolean
 function core.is_nan(arg) end
+
 --- * returns time with microsecond precision. May not return wall time.
 --- * This value might overflow on certain 32-bit systems!
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L3269-L3271)
 ---@return number
 function core.get_us_time() end
+
 --- returns a position.
 --- * returns the exact position on the surface of a pointed node
 ---
@@ -258,6 +262,7 @@ function core.get_hit_params(groups, tool_capabilities , time_from_last_punch) e
 --- @param text_domain string
 --- @return fun(str: string, ...):string
 function core.get_translator(text_domain) end
+
 --- translates the string `str` with
 ---   the given `textdomain` for disambiguation. The textdomain must match the
 ---   textdomain specified in the translation file in order to get the string
@@ -311,12 +316,14 @@ function core.translate(textdomain, str, ...) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4564-L4565)
 --- @param callback fun(delta_time:number)
 function core.register_globalstep(callback) end
+
 --- * Called after mods have finished loading and before the media is cached or the
 ---   aliases handled.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4566-L4568)
 --- @param callback fun()
 function core.register_on_mods_loaded(callback) end
+
 --- * Called before server shutdown
 --- * **Warning**: If the server terminates abnormally (i.e. crashes), the
 ---   registered callbacks **will likely not be run**. Data should be saved at
@@ -325,6 +332,7 @@ function core.register_on_mods_loaded(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4569-L4573)
 --- @param callback fun()
 function core.register_on_shutdown(callback) end
+
 --- * Called when a node has been placed
 --- * If return `true` no item is taken from `itemstack`
 --- * `placer` may be any valid ObjectRef or nil.
@@ -334,6 +342,7 @@ function core.register_on_shutdown(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4574-L4579)
 --- @param callback fun(pos, newnode, placer, oldnode, itemstack, pointed_thing)
 function core.register_on_placenode(callback) end
+
 --- * Called when a node has been dug.
 --- * **Not recommended**; Use `on_destruct` or `after_dig_node` in node
 ---   definition whenever possible.
@@ -341,6 +350,7 @@ function core.register_on_placenode(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4580-L4583)
 --- @param callback fun(pos, oldnode, digger)
 function core.register_on_dignode(callback) end
+
 --- * Called when a node is punched
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4584-L4585)
@@ -358,11 +368,13 @@ function core.register_on_punchnode(callback) end
 --- @overload fun(callback:fun(min_pos:MapPosition, max_pos:MapPosition, blockseed:number))
 --- @param callback fun(vmanip:VoxelManip, min_pos:MapPosition, max_pos:MapPosition, blockseed:number)
 function core.register_on_generated(callback) end
+
 --- * Called when a new player enters the world for the first time
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4589-L4590)
 --- @param callback fun(player:Player)
 function core.register_on_newplayer(callback) end
+
 --- * Called when a player is punched
 --- * Note: This callback is invoked even if the punched player is dead.
 --- * `player`: ObjectRef - Player that was punched
@@ -378,6 +390,7 @@ function core.register_on_newplayer(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4591-L4602)
 --- @param callback fun(player:Player, hitter:Player, time_from_last_punch:number|nil, tool_capabilities, dir, damage)
 function core.register_on_punchplayer(callback) end
+
 --- * Called when a player is right-clicked
 --- * `player`: ObjectRef - Player that was right-clicked
 --- * `clicker`: ObjectRef - Object that right-clicked, may or may not be a player
@@ -426,12 +439,14 @@ function core.register_on_rightclickplayer(callback) end
 --- @param callback fun(player:Player, hp_change:number, reason:PlayerHPChangeReason)|fun(player:Player, hp_change:number, reason:PlayerHPChangeReason):number,boolean
 --- @param modifier boolean
 function core.register_on_player_hpchange(callback, modifier) end
+
 --- * Called when a player dies
 --- * `reason`: a PlayerHPChangeReason table, see register_on_player_hpchange
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4627-L4629)
 --- @param callback fun(player:ObjectRef, reason:PlayerHPChangeReason)
 function core.register_on_dieplayer(callback) end
+
 --- * Called when player is to be respawned
 --- * Called _before_ repositioning of player occurs
 --- * return true in func to disable regular player placement
@@ -439,6 +454,7 @@ function core.register_on_dieplayer(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4630-L4633)
 --- @param callback fun(player:ObjectRef):boolean|nil
 function core.register_on_respawnplayer(callback) end
+
 --- * Called when a client connects to the server, prior to authentication
 --- * If it returns a string, the client is disconnected with that string as
 ---   reason.
@@ -446,18 +462,21 @@ function core.register_on_respawnplayer(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4634-L4637)
 --- @param callback fun(name:string, ip:string):nil|string
 function core.register_on_prejoinplayer(callback) end
+
 --- * Called when a player joins the game
 --- * `last_login`: The timestamp of the previous login, or nil if player is new
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4638-L4640)
 --- @param callback fun(player:Player, last_login:number)
 function core.register_on_joinplayer(callback) end
+
 --- * Called when a player leaves the game
 --- * `timed_out`: True for timeout, false for other reasons.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4641-L4643)
 --- @param callback fun(player:Player, timed_out:boolean)
 function core.register_on_leaveplayer(callback) end
+
 --- * Called when a client attempts to log into an account.
 --- * `name`: The name of the account being authenticated.
 --- * `ip`: The IP address of the client
@@ -467,12 +486,14 @@ function core.register_on_leaveplayer(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4644-L4649)
 --- @param callback fun(name, ip, is_success)
 function core.register_on_authplayer(callback) end
+
 --- * Deprecated: use `core.register_on_authplayer(name, ip, is_success)` instead.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4650-L4651)
 --- @deprecated
 --- @param callback fun(name, ip)
 function core.register_on_auth_fail(callback) end
+
 --- * Called when a player cheats
 --- * `cheat`: `{type=<cheat_type>}`, where `<cheat_type>` is one of:
 ---     * `moved_too_fast`
@@ -486,6 +507,7 @@ function core.register_on_auth_fail(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4652-L4661)
 --- @param callback fun(ObjectRef, cheat)
 function core.register_on_cheat(callback) end
+
 --- * Called always when a player says something
 --- * Return `true` to mark the message as handled, which means that it will
 ---   not be sent to other players.
@@ -493,6 +515,7 @@ function core.register_on_cheat(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4662-L4665)
 --- @param callback fun(name, message)
 function core.register_on_chat_message(callback) end
+
 --- * Called always when a chatcommand is triggered, before `core.registered_chatcommands`
 ---   is checked to see if the command exists, but after the input is parsed.
 --- * Return `true` to mark the command as handled, which means that the default
@@ -501,6 +524,7 @@ function core.register_on_chat_message(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4666-L4670)
 --- @param callback fun(name, command, params)
 function core.register_on_chatcommand(callback) end
+
 --- * Called when the server received input from `player` in a formspec with
 ---   the given `formname`. Specifically, this is called on any of the
 ---   following events:
@@ -542,6 +566,7 @@ function core.register_on_chatcommand(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4671-L4708)
 --- @param callback fun(player, formname, fields)
 function core.register_on_player_receive_fields(callback) end
+
 --- * Called when `player` crafts something
 --- * `itemstack` is the output
 --- * `old_craft_grid` contains the recipe (Note: the one in the inventory is
@@ -553,12 +578,14 @@ function core.register_on_player_receive_fields(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4709-L4716)
 --- @param callback fun(itemstack, player, old_craft_grid, craft_inv)
 function core.register_on_craft(callback) end
+
 --- * The same as before, except that it is called before the player crafts, to
 ---   make craft prediction, and it should not change anything.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4717-L4719)
 --- @param callback fun(itemstack, player, old_craft_grid, craft_inv)
 function core.register_craft_predict(callback) end
+
 --- * Determines how much of a stack may be taken, put or moved to a
 ---   player inventory.
 --- * `player` (type `ObjectRef`) is the player who modified the inventory
@@ -574,6 +601,7 @@ function core.register_craft_predict(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4720-L4731)
 --- @param callback fun(player:ObjectRef|Player, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table):integer?
 function core.register_allow_player_inventory_action(callback) end
+
 --- * Called after a take, put or move event from/to/in a player inventory
 --- * Function arguments: see `core.register_allow_player_inventory_action`
 --- * Does not accept or handle any return value.
@@ -581,6 +609,7 @@ function core.register_allow_player_inventory_action(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4732-L4735)
 --- @param callback fun(player:ObjectRef|Player, action:"move"|"put"|"take", inventory:InvRef, inventory_info:table):integer?
 function core.register_on_player_inventory_action(callback) end
+
 --- * Called by `builtin` and mods when a player violates protection at a
 ---   position (eg, digs a node or punches a protected entity).
 --- * The registered functions can be called using
@@ -592,12 +621,14 @@ function core.register_on_player_inventory_action(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4736-L4743)
 --- @param callback fun(pos, name)
 function core.register_on_protection_violation(callback) end
+
 --- * Called when an item is eaten, by `core.item_eat`
 --- * Return `itemstack` to cancel the default item eat response (i.e.: hp increase).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4744-L4746)
 --- @param callback fun(hp_change, replace_with_item, itemstack, user, pointed_thing)
 function core.register_on_item_eat(callback) end
+
 --- * Called when `granter` grants the priv `priv` to `name`.
 --- * Note that the callback will be called twice if it's done by a player,
 ---   once with granter being the player name, and again with granter being nil.
@@ -605,6 +636,7 @@ function core.register_on_item_eat(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4747-L4750)
 --- @param callback fun(name, granter, priv)
 function core.register_on_priv_grant(callback) end
+
 --- * Called when `revoker` revokes the priv `priv` from `name`.
 --- * Note that the callback will be called twice if it's done by a player,
 ---   once with revoker being the player name, and again with revoker being nil.
@@ -612,12 +644,14 @@ function core.register_on_priv_grant(callback) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4751-L4754)
 --- @param callback fun(name, revoker, priv)
 function core.register_on_priv_revoke(callback) end
+
 --- * Called when `name` user connects with `ip`.
 --- * Return `true` to by pass the player limit
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4755-L4757)
 --- @param callback fun(name, ip)
 function core.register_can_bypass_userlimit(callback) end
+
 --- * Called when an incoming mod channel message is received
 --- * You should have joined some channels to receive events.
 --- * If message comes from a server mod, `sender` field is an empty string.
@@ -646,6 +680,7 @@ function core.setting_get_pos(name) end
 --- @param delim string
 --- @return table<string,boolean>
 function core.string_to_privs(str, delim) end
+
 --- * Returns the string representation of `privs`
 --- * `delim`: [Optional] String to delimit privs. Defaults to `","`.
 ---
@@ -654,11 +689,13 @@ function core.string_to_privs(str, delim) end
 --- @param delim string
 --- @return string
 function core.privs_to_string(privs, delim) end
+
 --- Returns -> {priv1=true,...}
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4781-L4781)
 --- @param name string
 --- @return table<string,boolean>
 function core.get_player_privs(name) end
+
 --- Returns `bool, missing_privs`
 --- * A quickhand for checking privileges.
 --- * `player_or_name`: Either a Player object or the name of a player.
@@ -669,6 +706,7 @@ function core.get_player_privs(name) end
 --- @param player_or_name Player|string
 --- @return boolean,table
 function core.check_player_privs(player_or_name, ...) end
+
 --- * Returns true if the "password entry" for a player with name matches given
 ---   password, false otherwise.
 --- * The "password entry" is the password representation generated by the
@@ -678,6 +716,7 @@ function core.check_player_privs(player_or_name, ...) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4789-L4795)
 function core.check_password_entry(name, entry, password) end
+
 --- * Convert a name-password pair to a password hash that Minetest can use.
 --- * The returned value alone is not a good basis for password checks based
 ---   on comparing the password hash in the database with the password hash
@@ -687,12 +726,14 @@ function core.check_password_entry(name, entry, password) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4796-L4802)
 function core.get_password_hash(name, raw_password) end
+
 --- Returns an IP address string for the player
 ---   `name`.
 --- * The player needs to be online for this to be successful.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4803-L4805)
 function core.get_player_ip(name) end
+
 --- Return the currently active auth handler
 --- * See the [Authentication handler definition]
 --- * Use this to e.g. get the authentication data for a player:
@@ -701,16 +742,19 @@ function core.get_player_ip(name) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4807-L4810)
 ---@return AuthenticationHandlerDefinition
 function core.get_auth_handler() end
+
 --- * Must be called by the authentication handler for privilege changes.
 --- * `name`: string; if omitted, all auth data should be considered modified
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4811-L4813)
 function core.notify_authentication_modified(name) end
+
 --- Set password hash of
 ---   player `name`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4814-L4815)
 function core.set_player_password(name, password_hash) end
+
 --- Set privileges of player
 ---   `name`.
 ---
@@ -718,6 +762,7 @@ function core.set_player_password(name, password_hash) end
 --- @param name  string
 --- @param privs table<string,boolean>  object like `{priv1=true,...}`
 function core.set_player_privs(name, privs) end
+
 --- * See `reload()` in authentication handler definition
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4818-L4819)
@@ -726,9 +771,11 @@ function core.auth_reload() end
 -- Chat:
 --- @param text string
 function core.chat_send_all(text) end
+
 --- @param name string player name to send to
 --- @param text string
 function core.chat_send_player(name, text) end
+
 --- * Used by the server to format a chat message, based on the setting `chat_message_format`.
 ---   Refer to the documentation of the setting for a list of valid placeholders.
 --- * Takes player name and message, and returns the formatted string to be sent to players.
@@ -743,6 +790,7 @@ function core.format_chat_message(name, message) end
 --- @param node NodeTable
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4840-L4840)
 function core.set_node(pos, node) end
+
 --- Alias to `core.set_node`
 --- * Set node at position `pos`
 --- * `node`: table `{name=string, param1=number, param2=number}`
@@ -785,6 +833,7 @@ function core.swap_node(pos, node) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4858-L4859)
 --- @param pos MapPosition
 function core.remove_node(pos) end
+
 --- * Returns the node at the given position as table in the format
 ---   `{name="node_name", param1=0, param2=0}`,
 ---   returns `{name="ignore", param1=0, param2=0}` for unloaded areas.
@@ -793,12 +842,14 @@ function core.remove_node(pos) end
 ---@param pos MapPosition
 ---@return NodeTable
 function core.get_node(pos) end
+
 --- * Same as `get_node` but returns `nil` for unloaded areas.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4864-L4865)
 --- @param pos MapPosition
 --- @return NodeTable|nil
 function core.get_node_or_nil(pos) end
+
 --- * Gets the light value at the given position. Note that the light value
 ---   "inside" the node at the given position is returned, so you usually want
 ---   to get the light value of a neighbor.
@@ -810,6 +861,7 @@ function core.get_node_or_nil(pos) end
 --- @param timeofday number|nil  `nil` for current time, `0` for night, `0.5` for day
 --- @return number|nil
 function core.get_node_light(pos, timeofday) end
+
 --- * Figures out the sunlight (or moonlight) value at pos at the given time of
 ---   day.
 --- * `pos`: The position of the node
@@ -822,6 +874,7 @@ function core.get_node_light(pos, timeofday) end
 --- @param pos       MapPosition The position where to measure the light.
 --- @param timeofday number|nil  `nil` for current time, `0` for night, `0.5` for day
 function core.get_natural_light(pos, timeofday) end
+
 --- * Calculates the artificial light (light from e.g. torches) value from the
 ---   `param1` value.
 --- * `param1`: The param1 value of a `paramtype = "light"` node.
@@ -831,29 +884,34 @@ function core.get_natural_light(pos, timeofday) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4882-L4888)
 function core.get_artificial_light(param1) end
+
 --- * Place node with the same effects that a player would cause
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4889-L4890)
 --- @param pos  MapPosition
 --- @param node NodeTable
 function core.place_node(pos, node) end
+
 --- * Dig node with the same effects that a player would cause
 --- * Returns `true` if successful, `false` on failure (e.g. protected location)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4891-L4893)
 --- @param pos  MapPosition
 function core.dig_node(pos) end
+
 --- * Punch node with the same effects that a player would cause
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4894-L4895)
 --- @param pos  MapPosition
 function core.punch_node(pos) end
+
 --- * Change node into falling node
 --- * Returns `true` if successful, `false` on failure
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4896-L4898)
 --- @param pos  MapPosition
 function core.spawn_falling_node(pos) end
+
 --- * Get a table of positions of nodes that have metadata within a region
 ---   {pos1, pos2}.
 ---
@@ -861,18 +919,21 @@ function core.spawn_falling_node(pos) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.find_nodes_with_meta(pos1, pos2) end
+
 --- * Get a `NodeMetaRef` at that position
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4903-L4904)
 --- @param pos MapPosition
 --- @return NodeMetaRef
 function core.get_meta(pos) end
+
 --- * Get `NodeTimerRef`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4905-L4906)
 --- @param pos MapPosition
 --- @return NodeTimerRef
 function core.get_node_timer(pos) end
+
 --- Spawn Lua-defined entity at
 ---   position.
 --- * Returns `ObjectRef`, or `nil` if failed
@@ -884,6 +945,7 @@ function core.get_node_timer(pos) end
 --- @param staticdata string?
 --- @return ObjectRef|Entity|nil
 function core.add_entity(pos, name, staticdata) end
+
 --- Spawn item
 --- * Returns `ObjectRef`, or `nil` if failed
 ---
@@ -891,12 +953,14 @@ function core.add_entity(pos, name, staticdata) end
 --- @param pos   Position
 --- @return ObjectRef|nil
 function core.add_item(pos, item) end
+
 --- Get an `ObjectRef` to a player
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4913-L4913)
 --- @param name string
 --- @return Player|nil
 function core.get_player_by_name(name) end
+
 --- Returns a list of
 ---   ObjectRefs.
 --- * `radius`: using an euclidean metric
@@ -906,6 +970,7 @@ function core.get_player_by_name(name) end
 --- @param radius number
 --- @return ObjectRef[]|Entity[]|Player[]
 function core.get_objects_inside_radius(pos, radius) end
+
 --- Returns a list of
 ---   ObjectRefs.
 ---  * `pos1` and `pos2` are the min and max positions of the area to search.
@@ -915,25 +980,30 @@ function core.get_objects_inside_radius(pos, radius) end
 --- @param pos2 Position
 --- @return ObjectRef[]|Entity[]|Player[]
 function core.get_objects_in_area(pos1, pos2) end
+
 --- * `val` is between `0` and `1`; `0` for midnight, `0.5` for midday
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4920-L4921)
 ---@param val number
 function core.set_timeofday(val) end
+
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4922-L4922)
 ---@return number
 function core.get_timeofday() end
+
 --- Returns the time, in seconds, since the world was
 ---   created.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4923-L4924)
 function core.get_gametime() end
+
 --- Returns number days elapsed since world was
 ---   created.
 --- * accounts for time changes.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4925-L4927)
 function core.get_day_count() end
+
 --- Returns pos or `nil`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4928-L4933)
@@ -945,6 +1015,7 @@ function core.get_day_count() end
 ---
 --- @return Position|nil
 function core.find_node_near(pos, radius, node_names, search_in_center) end
+
 --- * If `grouped` is true the return value is a table indexed by node name
 ---   which contains lists of positions.
 --- * If `grouped` is false or absent the return values are as follows:
@@ -961,6 +1032,7 @@ function core.find_node_near(pos, radius, node_names, search_in_center) end
 ---
 --- @return (table<string,Position[]>|Position[]), (nil|table<string,number>)
 function core.find_nodes_in_area(pos1, pos2, node_names, grouped) end
+
 --- Returns a
 ---   list of positions.
 --- * `nodenames`: e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
@@ -972,21 +1044,25 @@ function core.find_nodes_in_area(pos1, pos2, node_names, grouped) end
 --- @param pos2       MapPosition  max positions of the area to search.
 --- @param node_names table|string e.g. `{"ignore", "group:tree"}` or `"default:dirt"`
 function core.find_nodes_in_area_under_air(pos1, pos2, node_names) end
+
 --- * Deprecated: renamed to `core.get_value_noise` in version 5.12.0.
 --- @deprecated
 --- @param  noiseparams NoiseParams
 --- @return ValueNoise
 function core.get_perlin(noiseparams) end
+
 --- * Deprecated: renamed to core.get_value_noise in version 5.12.0.
 --- @deprecated
 --- @return ValueNoise
 function core.get_perlin(seeddiff, octaves, persistence, spread) end
+
 --- * Return world-specific value noise.
 --- * The actual seed used is the noiseparams seed plus the world seed.
 --- * **Important**: Requires the mapgen environment to be initalized, do not use at load time.
 --- @param  noiseparams NoiseParams
 --- @return ValueNoise
 function core.get_value_noise(noiseparams) end
+
 --- * Deprecated: use `core.get_value_noise(noiseparams)` instead.
 --- @deprecated
 --- @return ValueNoise
@@ -1000,6 +1076,7 @@ function core.get_value_noise(seeddiff, octaves, persistence, spread) end
 --- @param max_position MapPosition? max position
 --- @return VoxelManip
 function core.get_voxel_manip(min_position, max_position) end
+
 --- * Set the types of on-generate notifications that should be collected.
 --- * `flags` is a flag field with the available flags:
 ---     * dungeon
@@ -1016,10 +1093,12 @@ function core.get_voxel_manip(min_position, max_position) end
 ---                          By convention these should be the mod name with an optional
 ---                          colon and specifier added, e.g. `"default"` or `"default:dungeon_loot"`
 function core.set_gen_notify(flags, deco_ids, custom_ids) end
+
 --- * Returns a flagstring and a table with the `deco_id`s.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4970-L4971)
 function core.get_gen_notify() end
+
 --- * Returns the decoration ID number for the provided decoration name string,
 ---   or `nil` on failure.
 ---
@@ -1053,16 +1132,19 @@ function core.get_decoration_id(decoration_name) end
 --- @param objectname MapgenObjectName one of: "voxelmanip", "heightmap", "biomemap", "heatmap", "humiditymap", "gennotify"
 --- @return VoxelManip|number[][]|number[][][], Position, Position
 function core.get_mapgen_object(objectname) end
+
 --- * Returns the heat at the position, or `nil` on failure.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4977-L4978)
 --- @param pos MapPosition
 function core.get_heat(pos) end
+
 --- * Returns the humidity at the position, or `nil` on failure.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4979-L4980)
 --- @param pos MapPosition
 function core.get_humidity(pos) end
+
 --- * Returns a table containing:
 ---     * `biome` the biome id of the biome at that position
 ---     * `heat` the heat at the position
@@ -1072,17 +1154,20 @@ function core.get_humidity(pos) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4981-L4986)
 --- @param pos MapPosition
 function core.get_biome_data(pos) end
+
 --- * Returns the biome id, as used in the biomemap Mapgen object and returned
 ---   by `core.get_biome_data(pos)`, for a given biome_name string.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4987-L4989)
 function core.get_biome_id(biome_name) end
+
 --- * Returns the biome name string for the provided biome id, or `nil` on
 ---   failure.
 --- * If no biomes have been registered, such as in mgv6, returns `default`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4990-L4993)
 function core.get_biome_name(biome_id) end
+
 --- * Deprecated: use `core.get_mapgen_setting(name)` instead.
 --- * Returns a table containing:
 ---     * `mgname`
@@ -1093,6 +1178,7 @@ function core.get_biome_name(biome_id) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4994-L5001)
 function core.get_mapgen_params() end
+
 --- * Deprecated: use `core.set_mapgen_setting(name, value, override)`
 ---   instead.
 --- * Set map generation parameters.
@@ -1112,6 +1198,7 @@ function core.get_mapgen_params() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5002-L5018)
 function core.set_mapgen_params(MapgenParams) end
+
 --- * Gets the *active* mapgen setting (or nil if none exists) in string
 ---   format with the following order of precedence:
 ---     1) Settings loaded from map_meta.txt or overrides set during mod
@@ -1123,11 +1210,13 @@ function core.set_mapgen_params(MapgenParams) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5019-L5026)
 --- @return string|nil
 function core.get_mapgen_setting(name) end
+
 --- * Same as above, but returns the value as a NoiseParams table if the
 ---   setting `name` exists and is a valid NoiseParams.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5027-L5029)
 function core.get_mapgen_setting_noiseparams(name) end
+
 --- * Sets a mapgen param to `value`, and will take effect if the corresponding
 ---   mapgen setting is not already present in map_meta.txt.
 --- * `override_meta` [Optional] is an optional boolean (default: `false`). If this is set
@@ -1137,10 +1226,12 @@ function core.get_mapgen_setting_noiseparams(name) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5030-L5036)
 function core.set_mapgen_setting(name, value, override_meta) end
+
 --- * Same as above, except value is a NoiseParams table.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5037-L5038)
 function core.set_mapgen_setting_noiseparams(name, value, override_meta) end
+
 --- * Sets the noiseparams setting of `name` to the noiseparams table specified
 ---   in `noiseparams`.
 --- * `set_default` is an optional boolean (default: `true`) that specifies
@@ -1149,10 +1240,12 @@ function core.set_mapgen_setting_noiseparams(name, value, override_meta) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5039-L5044)
 function core.set_noiseparams(name, noiseparams, set_default) end
+
 --- * Returns a table of the noiseparams for name.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5045-L5046)
 function core.get_noiseparams(name) end
+
 --- * Generate all registered ores within the VoxelManip `vm` and in the area
 ---   from `pos1` to `pos2`.
 --- * `pos1` and `pos2` are optional and default to mapchunk minp and maxp.
@@ -1162,6 +1255,7 @@ function core.get_noiseparams(name) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.generate_ores(vm, pos1, pos2) end
+
 --- * Generate all registered decorations within the VoxelManip `vm` and in the
 ---   area from `pos1` to `pos2`.
 --- * `pos1` and `pos2` are optional and default to mapchunk minp and maxp.
@@ -1171,6 +1265,7 @@ function core.generate_ores(vm, pos1, pos2) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.generate_decorations(vm, pos1, pos2) end
+
 --- * Clear all objects in the environment
 --- * Takes an optional table as an argument with the field `mode`.
 ---     * mode = `"full"` : Load and go through every mapblock, clearing
@@ -1181,6 +1276,7 @@ function core.generate_decorations(vm, pos1, pos2) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5055-L5062)
 function core.clear_objects(options) end
+
 --- * Load the mapblocks containing the area from `pos1` to `pos2`.
 ---   `pos2` defaults to `pos1` if not specified.
 --- * This function does not trigger map generation.
@@ -1189,6 +1285,7 @@ function core.clear_objects(options) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.load_area(pos1, pos2) end
+
 --- * Queue all blocks in the area from `pos1` to `pos2`, inclusive, to be
 ---   asynchronously fetched from memory, loaded from disk, or if inexistent,
 ---   generates them.
@@ -1213,12 +1310,14 @@ function core.load_area(pos1, pos2) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.emerge_area(pos1, pos2, callback, param) end
+
 --- * delete all mapblocks in the area from pos1 to pos2, inclusive
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5087-L5088)
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.delete_area(pos1, pos2) end
+
 --- Returns `boolean, pos`
 --- * Checks if there is anything other than air between pos1 and pos2.
 --- * Returns false if something is blocking the sight.
@@ -1230,6 +1329,7 @@ function core.delete_area(pos1, pos2) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.line_of_sight(pos1, pos2) end
+
 --- Returns `Raycast`
 --- * Creates a `Raycast` object.
 --- * `pos1`: start of the ray
@@ -1243,6 +1343,7 @@ function core.line_of_sight(pos1, pos2) end
 --- @param objects boolean?
 --- @param liquids boolean?
 function core.raycast(pos1, pos2, objects, liquids) end
+
 --- * returns table containing path that can be walked on
 --- * returns a table of 3D points representing a path from `pos1` to `pos2` or
 ---   `nil` on failure.
@@ -1267,32 +1368,38 @@ function core.raycast(pos1, pos2, objects, liquids) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.find_path(pos1,pos2,searchdistance,max_jump,max_drop,algorithm) end
+
 --- * spawns L-system tree at given `pos` with definition in `treedef` table
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5121-L5122)
 --- @param pos MapPosition
 function core.spawn_tree (pos, treedef) end
+
 --- * add node to liquid update queue
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5123-L5124)
 --- @param pos MapPosition
 function core.transforming_liquid_add(pos) end
+
 --- * get max available level for leveled node
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5125-L5126)
 --- @param pos MapPosition
 function core.get_node_max_level(pos) end
+
 --- * get level of leveled node (water, snow)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5127-L5128)
 --- @param pos MapPosition
 function core.get_node_level(pos) end
+
 --- * set level of leveled node, default `level` equals `1`
 --- * if `totallevel > maxlevel`, returns rest (`total-max`).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5129-L5131)
 --- @param pos MapPosition
 function core.set_node_level(pos, level) end
+
 --- * increase level of leveled node by level, default `level` equals `1`
 --- * if `totallevel > maxlevel`, returns rest (`total-max`)
 --- * `level` must be between -127 and 127
@@ -1300,6 +1407,7 @@ function core.set_node_level(pos, level) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5132-L5135)
 --- @param pos MapPosition
 function core.add_node_level(pos, level) end
+
 --- Returns `true`/`false`
 --- * resets the light in a cuboid-shaped part of
 ---   the map and removes lighting bugs.
@@ -1321,6 +1429,7 @@ function core.add_node_level(pos, level) end
 --- @param pos1 MapPosition
 --- @param pos2 MapPosition
 function core.fix_light(pos1, pos2) end
+
 --- * causes an unsupported `group:falling_node` node to fall and causes an
 ---   unattached `group:attached_node` node to fall.
 --- * does not spread these updates to neighbours.
@@ -1328,6 +1437,7 @@ function core.fix_light(pos1, pos2) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5152-L5155)
 --- @param pos MapPosition
 function core.check_single_for_falling(pos) end
+
 --- * causes an unsupported `group:falling_node` node to fall and causes an
 ---   unattached `group:attached_node` node to fall.
 --- * spread these updates to neighbours and can cause a cascade
@@ -1336,6 +1446,7 @@ function core.check_single_for_falling(pos) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5156-L5160)
 --- @param pos MapPosition
 function core.check_for_falling(pos) end
+
 --- * Returns a player spawn y co-ordinate for the provided (x, z)
 ---   co-ordinates, or `nil` for an unsuitable spawn point.
 --- * For most mapgens a 'suitable spawn point' is one with y between
@@ -1364,6 +1475,7 @@ function core.mod_channel_join(channel_name) end
 ---		{type="detached", name="creative"}
 --- @return InvRef
 function core.get_inventory(location) end
+
 --- Returns
 ---   an `InvRef`.
 --- * `callbacks`: See [Detached inventory callbacks]
@@ -1380,10 +1492,12 @@ function core.get_inventory(location) end
 --- @param player_name string
 --- @return InvRef
 function core.create_detached_inventory(name, callbacks, player_name) end
+
 --- * Returns a `boolean` indicating whether the removal succeeded.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5199-L5200)
 function core.remove_detached_inventory(name) end
+
 --- Returns left over ItemStack.
 --- * See `core.item_eat` and `core.register_on_item_eat`
 ---
@@ -1396,6 +1510,7 @@ function core.do_item_eat(hp_change, replace_with_item, itemstack, user, pointed
 --- @param form_spec   string formspec to display (https://api.luanti.org/formspec/)
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5208-L5212)
 function core.show_formspec(player_name, form_name, form_spec) end
+
 --- * `playername`: name of player to close formspec
 --- * `formname`: has to exactly match the one given in `show_formspec`, or the
 ---   formspec will not close.
@@ -1407,12 +1522,14 @@ function core.show_formspec(player_name, form_name, form_spec) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5213-L5221)
 function core.close_formspec(playername, formname) end
+
 --- Returns a string
 --- * escapes the characters "[", "]", "\", "," and ";", which can not be used
 ---   in formspecs.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L3262-L3264)
 function core.formspec_escape(string) end
+
 --- Returns a table
 --- * returns e.g. `{type="CHG", row=1, column=2}`
 --- * `type` is one of:
@@ -1422,6 +1539,7 @@ function core.formspec_escape(string) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5225-L5230)
 function core.explode_table_event(string) end
+
 --- Returns a table
 --- * returns e.g. `{type="CHG", index=1}`
 --- * `type` is one of:
@@ -1431,6 +1549,7 @@ function core.explode_table_event(string) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5231-L5236)
 function core.explode_textlist_event(string) end
+
 --- Returns a table
 --- * returns e.g. `{type="CHG", value=500}`
 --- * `type` is one of:
@@ -1446,6 +1565,7 @@ function core.explode_scrollbar_event(string) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5247-L5248)
 function core.inventorycube(img1, img2, img3) end
+
 --- * Returns the position of a `pointed_thing` or `nil` if the `pointed_thing`
 ---   does not refer to a node or entity.
 --- * If the optional `above` parameter is true and the `pointed_thing` refers
@@ -1453,6 +1573,7 @@ function core.inventorycube(img1, img2, img3) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5249-L5253)
 function core.get_pointed_thing_position(pointed_thing, above) end
+
 --- * Convert a vector to a facedir value, used in `param2` for
 ---   `paramtype2="facedir"`.
 --- * passing something non-`nil`/`false` for the optional second parameter
@@ -1460,34 +1581,41 @@ function core.get_pointed_thing_position(pointed_thing, above) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5254-L5258)
 function core.dir_to_facedir(dir, is6d) end
+
 --- * Convert a facedir back into a vector aimed directly out the "back" of a
 ---   node.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5259-L5261)
 function core.facedir_to_dir(facedir) end
+
 --- * Convert a vector to a wallmounted value, used for
 ---   `paramtype2="wallmounted"`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5262-L5264)
 function core.dir_to_wallmounted(dir) end
+
 --- * Convert a wallmounted value back into a vector aimed directly out the
 ---   "back" of a node.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5265-L5267)
 function core.wallmounted_to_dir(wallmounted) end
+
 --- * Convert a vector into a yaw (angle)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5268-L5269)
 function core.dir_to_yaw(dir) end
+
 --- * Convert yaw (angle) to a vector
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5270-L5271)
 function core.yaw_to_dir(yaw) end
+
 --- * Returns a boolean. Returns `true` if the given `paramtype2` contains
 ---   color information (`color`, `colorwallmounted` or `colorfacedir`).
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5272-L5274)
 function core.is_colored_paramtype(ptype) end
+
 --- * Removes everything but the color information from the
 ---   given `param2` value.
 --- * Returns `nil` if the given `paramtype2` does not contain color
@@ -1495,6 +1623,7 @@ function core.is_colored_paramtype(ptype) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5275-L5279)
 function core.strip_param2_color(param2, paramtype2) end
+
 --- * Returns list of itemstrings that are dropped by `node` when dug
 ---   with `toolname`.
 --- * `node`: node as table or node name
@@ -1529,6 +1658,7 @@ function core.get_node_drops(node, toolname) end
 --- @param input RecipeInput
 --- @return RecipeOutput, RecipeInput
 function core.get_craft_result(input) end
+
 --- Returns input
 --- * returns last registered recipe for output item (node)
 --- * `output` is a node or item type such as `"default:torch"`
@@ -1569,6 +1699,7 @@ function core.get_craft_recipe(output) end
 ---
 --- @return RecipeEntryTable[]|nil
 function core.get_all_craft_recipes(query_item) end
+
 --- * `drops`: list of itemstrings
 --- * Handles drops from nodes after digging: Default action is to put them
 ---   into digger's inventory.
@@ -1577,6 +1708,7 @@ function core.get_all_craft_recipes(query_item) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5320-L5325)
 function core.handle_node_drops(pos, drops, digger) end
+
 --- Returns an item
 ---   string.
 --- * Creates an item string which contains palette index information
@@ -1588,6 +1720,7 @@ function core.handle_node_drops(pos, drops, digger) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5326-L5333)
 function core.itemstring_with_palette(item, palette_index) end
+
 --- Returns an item string
 --- * Creates an item string which contains static color information
 ---   for hardware colorization. Use this method if you wish to colorize
@@ -1607,6 +1740,7 @@ function core.itemstring_with_color(item, colorstring) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5346-L5349)
 function core.rollback_get_node_actions(pos, range, seconds, limit) end
+
 --- Returns
 ---   `boolean, log_messages`.
 --- * Revert latest actions of someone
@@ -1631,12 +1765,14 @@ function core.rollback_revert_actions_by(actor, seconds) end
 --- @param prevent_after_place boolean
 --- @return ItemStack, vector|nil
 function core.item_place_node(itemstack, placer, pointed_thing, param2, prevent_after_place) end
+
 --- * Place item as-is
 --- * returns the leftover itemstack
 --- * **Note**: This function is deprecated and will never be called.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5365-L5368)
 function core.item_place_object(itemstack, placer, pointed_thing) end
+
 --- * Wrapper that calls `core.item_place_node` if appropriate
 --- * Calls `on_rightclick` of `pointed_thing.under` if defined instead
 --- * **Note**: is not called when wielded item overrides `on_place`
@@ -1661,12 +1797,14 @@ function core.item_place(itemstack, placer, pointed_thing, param2) end
 --- @param time_from_last_punch number
 --- @param ...                  any
 function core.item_pickup(itemstack, picker, pointed_thing, time_from_last_punch, ...) end
+
 --- * Global secondary use callback. Does nothing.
 --- * Parameters and return value are the same as on_secondary_use.
 --- * **Note**: is not called when wielded item overrides on_secondary_use
 --- @param itemstack   ItemStack
 --- @param user Player|ObjectRef|nil
 function core.item_secondary_use(itemstack, user) end
+
 --- * Drop the item
 --- * returns the leftover itemstack
 ---
@@ -1676,6 +1814,7 @@ function core.item_secondary_use(itemstack, user) end
 --- @param pos       Position
 --- @return ItemStack
 function core.item_drop(itemstack, dropper, pos) end
+
 --- * Returns `function(itemstack, user, pointed_thing)` as a
 ---   function wrapper for `core.do_item_eat`.
 --- * `replace_with_item` is the itemstring which is added to the inventory.
@@ -1691,6 +1830,7 @@ function core.item_eat(hp_change, replace_with_item) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5389-L5390)
 --- @param pos MapPosition
 function core.node_punch(pos, node, puncher, pointed_thing) end
+
 --- * Checks if node can be dug, puts item into inventory, removes node
 --- * Calls functions registered by `core.registered_on_dignodes()`
 --- * Returns `true` if the node was dig.
@@ -1710,10 +1850,12 @@ function core.node_dig(pos, node, digger) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5398-L5404)
 function core.sound_play(spec, parameters, ephemeral) end
+
 --- * `handle` is a handle returned by `core.sound_play`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5405-L5406)
 function core.sound_stop(handle) end
+
 --- * `handle` is a handle returned by `core.sound_play`
 --- * `step` determines how fast a sound will fade.
 ---   The gain will change by this much per second,
@@ -1738,6 +1880,7 @@ local job = {}
 ---@param func fun()
 ---@return job @job (job:cancel() to stop)
 function core.after(time, func, ...) end
+
 --- * Cancels the job function from being called
 function job:cancel() end
 
@@ -1751,6 +1894,7 @@ function job:cancel() end
 --- * Optional: Variable number of arguments that are passed to `func`
 --- @since 5.6
 function core.handle_async(func, callback, ...) end
+
 --- * Register a path to a Lua file to be imported when an async environment
 ---   is initialized. You can use this to preload code which you can then call
 ---   later using `core.handle_async()`.
@@ -1767,10 +1911,12 @@ function core.register_async_dofile(path) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5430-L5435)
 function core.request_shutdown(message,reconnect,delay) end
+
 --- Cancel current delayed shutdown
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5436-L5436)
 function core.cancel_shutdown_requests() end
+
 --- * Returns the server status string when a player joins or when the command
 ---   `/status` is called. Returns `nil` or an empty string when the message is
 ---   disabled.
@@ -1780,10 +1926,12 @@ function core.cancel_shutdown_requests() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5437-L5443)
 function core.get_server_status(name, joined) end
+
 --- Returns the server uptime in seconds
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5444-L5444)
 function core.get_server_uptime() end
+
 --- Remove player from database (if they are not
 ---   connected).
 --- * As auth data is not removed, `core.player_exists` will continue to
@@ -1793,11 +1941,13 @@ function core.get_server_uptime() end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5445-L5450)
 function core.remove_player(name) end
+
 --- Remove player authentication data
 --- * Returns boolean indicating success (false if player nonexistant)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5451-L5452)
 function core.remove_player_auth(name) end
+
 --- * `filepath`: path to a media file on the filesystem
 --- * `callback`: function with arguments `name`, where name is a player name
 ---   (previously there was no callback argument; omitting it is deprecated)
@@ -1822,21 +1972,25 @@ function core.dynamic_add_media(filepath, callback) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5473-L5473)
 function core.get_ban_list() end
+
 --- Returns list of bans matching
 ---   IP address or name formatted as string
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5474-L5475)
 function core.get_ban_description(ip_or_name) end
+
 --- Ban the IP of a currently connected player
 --- * Returns boolean indicating success
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5476-L5477)
 function core.ban_player(name) end
+
 --- Remove ban record matching
 ---   IP address or name
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5478-L5479)
 function core.unban_player_or_ip(ip_or_name) end
+
 --- Disconnect a player with an optional
 ---   reason.
 --- * Returns boolean indicating success (false if player nonexistant)
@@ -1850,6 +2004,7 @@ function core.kick_player(name, reason) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5487-L5489)
 function core.add_particle(particle_definition) end
+
 --- * Add a `ParticleSpawner`, an object that spawns an amount of particles
 ---   over `time` seconds.
 --- * Returns an `id`, and -1 if adding didn't succeed
@@ -1863,6 +2018,7 @@ function core.add_particle(particle_definition) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5491-L5501)
 function core.add_particlespawner(particlespawner_definition) end
+
 --- * Delete `ParticleSpawner` with `id` (return value from
 ---   `core.add_particlespawner`).
 --- * If playername is specified, only deletes on the player's client,
@@ -1902,6 +2058,7 @@ function core.delete_particlespawner(id, player) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5512-L5539)
 function core.create_schematic(p1, p2, probability_list, filename, slice_prob_list) end
+
 --- * Place the schematic specified by schematic (see [Schematic specifier]) at
 ---   `pos`.
 --- * `rotation` can equal `"0"`, `"90"`, `"180"`, `"270"`, or `"random"`.
@@ -1922,6 +2079,7 @@ function core.create_schematic(p1, p2, probability_list, filename, slice_prob_li
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5541-L5558)
 function core.place_schematic(pos, schematic, rotation, replacements, force_placement, flags) end
+
 --- * This function is analogous to core.place_schematic, but places a
 ---   schematic onto the specified VoxelManip object `vmanip` instead of the
 ---   map.
@@ -1938,6 +2096,7 @@ function core.place_schematic(pos, schematic, rotation, replacements, force_plac
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5560-L5573)
 function core.place_schematic_on_vmanip(vmanip, pos, schematic, rotation, replacement, force_placement, flags) end
+
 --- * Return the serialized schematic specified by schematic
 ---   (see [Schematic specifier])
 --- * in the `format` of either "mts" or "lua".
@@ -1955,6 +2114,7 @@ function core.place_schematic_on_vmanip(vmanip, pos, schematic, rotation, replac
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5575-L5589)
 function core.serialize_schematic(schematic, format, options) end
+
 --- * Returns a Lua table representing the schematic (see: [Schematic specifier])
 --- * `schematic` is the schematic to read (see: [Schematic specifier])
 --- * `options` is a table containing the following optional parameters:
@@ -2000,10 +2160,12 @@ function core.get_mod_storage() end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5637-L5637)
 --- @return Player[]
 function core.get_connected_players() end
+
 --- Boolean, whether `obj` is a player
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5638-L5638)
 function core.is_player(obj) end
+
 --- Boolean, whether player exists
 ---   (regardless of online status)
 ---
@@ -2011,31 +2173,37 @@ function core.is_player(obj) end
 ---@param name string
 ---@return boolean
 function core.player_exists(name) end
+
 --- * Replaces definition of a builtin hud element
 --- * `name`: `"breath"` or `"health"`
 --- * `hud_definition`: definition to replace builtin definition
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5641-L5644)
 function core.hud_replace_builtin(name, hud_definition) end
+
 --- * This function can be overridden by mods to change the join message.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5645-L5646)
 function core.send_join_message(player_name) end
+
 --- * This function can be overridden by mods to change the leave message.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5647-L5648)
 function core.send_leave_message(player_name, timed_out) end
+
 --- Returns an 48-bit integer
 --- * `pos`: table {x=number, y=number, z=number},
 --- * Gives a unique hash number for a node position (16+16+16=48bit)
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5649-L5651)
 function core.hash_node_position(pos) end
+
 --- Returns a position
 --- * Inverse transform of `core.hash_node_position`
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5652-L5653)
 function core.get_position_from_hash(hash) end
+
 --- Returns a rating
 --- * Get rating of a group of an item. (`0` means: not in group)
 --- * If `group` is `nil`, returns `0`
@@ -2045,11 +2213,13 @@ function core.get_position_from_hash(hash) end
 --- @param group string|nil
 --- @return      integer
 function core.get_item_group(name, group) end
+
 --- Returns a rating
 --- * Deprecated: An alias for the former.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5656-L5657)
 function core.get_node_group(name, group) end
+
 --- Returns a rating
 --- * Returns rating of the connect_to_raillike group corresponding to name
 --- * If name is not yet the name of a connect_to_raillike group, a new group
@@ -2057,6 +2227,7 @@ function core.get_node_group(name, group) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5658-L5661)
 function core.raillike_group(name) end
+
 --- Returns an integer
 --- * Gets the internal content ID of `name`
 ---
@@ -2064,11 +2235,13 @@ function core.raillike_group(name) end
 --- @param name string
 --- @return integer
 function core.get_content_id(name) end
+
 --- Returns a string
 --- * Gets the name of the content with that content ID
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5664-L5665)
 function core.get_name_from_content_id(content_id) end
+
 --- Returns something
 --- * Convert a string containing JSON data into the Lua equivalent
 --- * `nullvalue`: returned in place of the JSON null; defaults to `nil`
@@ -2080,6 +2253,7 @@ function core.get_name_from_content_id(content_id) end
 ---@param string string
 ---@param nullvalue any
 function core.parse_json(string, nullvalue) end
+
 --- Returns a string or `nil` and an error
 ---   message.
 --- * Convert a Lua table into a JSON string
@@ -2101,6 +2275,7 @@ function core.parse_json(string, nullvalue) end
 --- @param styled boolean
 --- @return string|nil
 function core.write_json(data, styled) end
+
 --- Returns a string
 --- * Convert a table containing tables, strings, numbers, booleans and `nil`s
 ---   into string form readable by `core.deserialize`
@@ -2110,6 +2285,7 @@ function core.write_json(data, styled) end
 --- @param table
 --- @return string
 function core.serialize(table) end
+
 --- Returns a table
 --- * Convert a string returned by `core.serialize` into a table
 --- * `string` is loaded in an empty sandbox environment.
@@ -2128,6 +2304,7 @@ function core.serialize(table) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5690-L5704)
 function core.deserialize(string, safe) end
+
 --- Returns `compressed_data`
 --- * Compress a string of data.
 --- * `method` is a string identifying the compression method to be used.
@@ -2139,6 +2316,7 @@ function core.deserialize(string, safe) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5705-L5712)
 function core.compress(data, method, ...) end
+
 --- Returns data
 --- * Decompress a string of data (using ZLib).
 --- * See documentation on `core.compress()` for supported compression
@@ -2147,6 +2325,7 @@ function core.compress(data, method, ...) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5713-L5717)
 function core.decompress(compressed_data, method, ...) end
+
 --- Returns a string
 --- * Each argument is a 8 Bit unsigned integer
 --- * Returns the ColorString from rgb or rgba values
@@ -2154,16 +2333,19 @@ function core.decompress(compressed_data, method, ...) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5718-L5721)
 function core.rgba(red, green, blue, alpha) end
+
 --- Returns string encoded in base64
 --- * Encodes a string in base64.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5722-L5723)
 function core.encode_base64(string) end
+
 --- Returns string or nil for invalid base64
 --- * Decodes a string encoded in base64.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5724-L5725)
 function core.decode_base64(string) end
+
 --- Returns boolean
 --- * Returning `true` restricts the player `name` from modifying (i.e. digging,
 ---    placing) the node at position `pos`.
@@ -2184,11 +2366,13 @@ function core.decode_base64(string) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5726-L5742)
 function core.is_protected(pos, name) end
+
 --- * This function calls functions registered with
 ---   `core.register_on_protection_violation`.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5743-L5745)
 function core.record_protection_violation(pos, name) end
+
 --- Returns boolean
 --- * Returning `true` means that Creative Mode is enabled for player `name`.
 --- * `name` will be `""` for non-players or if the player is unknown.
@@ -2199,6 +2383,7 @@ function core.record_protection_violation(pos, name) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5746-L5752)
 function core.is_creative_enabled(name) end
+
 --- * Returns the position of the first node that `player_name` may not modify
 ---   in the specified cuboid between `pos1` and `pos2`.
 --- * Returns `false` if no protections were found.
@@ -2215,6 +2400,7 @@ function core.is_creative_enabled(name) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5753-L5766)
 function core.is_area_protected(pos1, pos2, player_name, interval) end
+
 --- * Attempt to predict the desired orientation of the facedir-capable node
 ---   defined by `itemstack`, and place it accordingly (on-wall, on the floor,
 ---   or hanging from the ceiling).
@@ -2242,6 +2428,7 @@ function core.is_area_protected(pos1, pos2, player_name, interval) end
 --- @param prevent_after_place boolean
 --- @return ItemStack
 function core.rotate_and_place(itemstack, placer, pointed_thing, infinite_stacks, orient_flags, prevent_after_place) end
+
 --- * calls `rotate_and_place()` with `infinitestacks` set according to the state
 ---   of the creative mode setting, checks for "sneak" to set the `invert_wall`
 ---   parameter and `prevent_after_place` set to `true`.
@@ -2253,6 +2440,7 @@ function core.rotate_and_place(itemstack, placer, pointed_thing, infinite_stacks
 --- @param pointed_thing pointed_thing
 --- @return ItemStack
 function core.rotate_node(itemstack, placer, pointed_thing) end
+
 --- * Returns the amount of knockback applied on the punched player.
 --- * Arguments are equivalent to `register_on_punchplayer`, except the following:
 ---     * `distance`: distance between puncher and punched player
@@ -2262,6 +2450,7 @@ function core.rotate_node(itemstack, placer, pointed_thing) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5791-L5798)
 function core.calculate_knockback(player, hitter, time_from_last_punch,  tool_capabilities, dir, distance, damage) end
+
 --- * forceloads the position `pos`.
 --- * returns `true` if area could be forceloaded
 --- * If `transient` is `false` or absent, the forceload will be persistent
@@ -2271,6 +2460,7 @@ function core.calculate_knockback(player, hitter, time_from_last_punch,  tool_ca
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5800-L5805)
 --- @param pos MapPosition
 function core.forceload_block(pos, transient) end
+
 --- * stops forceloading the position `pos`
 --- * If `transient` is `false` or absent, frees a persistent forceload.
 ---   If `true`, frees a transient forceload.
@@ -2278,6 +2468,7 @@ function core.forceload_block(pos, transient) end
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5807-L5810)
 --- @param pos MapPosition
 function core.forceload_free_block(pos, transient) end
+
 --- Returns an environment containing
 ---   insecure functions if the calling mod has been listed as trusted in the
 ---   `secure.trusted_mods` setting or security is disabled, otherwise returns
@@ -2289,6 +2480,7 @@ function core.forceload_free_block(pos, transient) end
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5812-L5819)
 function core.request_insecure_environment() end
+
 --- * Checks if a global variable has been set, without triggering a warning.
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5821-L5822)
