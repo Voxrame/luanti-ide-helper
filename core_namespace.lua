@@ -54,6 +54,7 @@ PseudoRandom = {}
 core = {}
 --- for backward compatibilit
 --- @legacy
+--- @deprecated
 minetest = core
 
 

@@ -547,7 +547,7 @@ local NodeDefinition = {
 	--- If return true no item is taken from itemstack.
 	--- `placer` may be any valid ObjectRef or nil.
 	--- default: nil
-	--- @type fun(pos:MapPosition, placer:Player|ObjectRef|nil, itemstack:ItemStack, pointed_thing:pointed_thing)?
+	--- @type (fun(pos:MapPosition, placer:Player|ObjectRef|nil, itemstack:ItemStack, pointed_thing:pointed_thing):true?)?
 	after_place_node              = nil,
 
 	--- oldmetadata is in table format.
