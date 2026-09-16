@@ -300,26 +300,19 @@ function core.translate(textdomain, str, ...) end
 
 
 -- Logging:
--- see ./core_namespace/logging.lua
+--   see ./core_namespace/logging.lua
 
 
 -- Registration functions:
--- Environment:
--- see ./core_namespace/registration/environment.lua
--- Gameplay:
--- see ./core_namespace/registration/gameplay.lua
--- Global callback registration functions:
--- see ./core_namespace/registration/global.lua
+--   Environment:
+--     see ./core_namespace/registration/environment.lua
+--   Gameplay:
+--     see ./core_namespace/registration/gameplay.lua
+--   Global callback registration functions:
+--     see ./core_namespace/registration/global.lua
 
 -- Setting-related:
---- @type Settings
-core.settings = {}
-
---- Loads a setting from the main settings and
----   parses it as a position (in the format `(1,2,3)`). Returns a position or nil.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4768-L4769)
-function core.setting_get_pos(name) end
+--   see ./core_namespace/settings.lua
 
 -- Authentication:
 --- * Converts string representation of privs into table form
