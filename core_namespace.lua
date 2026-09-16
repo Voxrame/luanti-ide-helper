@@ -324,12 +324,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/environment_access.lua
 
 -- Mod channels:
---- * Server joins channel `channel_name`, and creates it if necessary. You
----   should listen for incoming messages with
----   `core.register_on_modchannel_message`
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5176-L5179)
-function core.mod_channel_join(channel_name) end
+--   see ./core_namespace/mod_channels.lua
 
 -- Inventory:
 --- returns an InvRef
