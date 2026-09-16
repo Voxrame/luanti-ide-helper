@@ -7,16 +7,16 @@
 --- * `delim`: [Optional] String separating the privs. Defaults to `","`.
 --- * Returns `{ priv1 = true, ... }`
 ---
---- @param str   string
---- @param delim string
+--- @param str    string
+--- @param delim? string
 --- @return table<string,boolean>
 function core.string_to_privs(str, delim) end
 
 --- * Returns the string representation of `privs`
 --- * `delim`: [Optional] String to delimit privs. Defaults to `","`.
 ---
---- @param privs table<string,boolean>
---- @param delim string
+--- @param privs  table<string,boolean>
+--- @param delim? string
 --- @return string
 function core.privs_to_string(privs, delim) end
 
@@ -33,7 +33,8 @@ function core.get_player_privs(name) end
 ---   a table, e.g. `{ priva = true, privb = true }`.
 ---
 --- @param player_or_name Player|string
---- @return boolean,table
+--- @param ...            string|table<string,boolean>
+--- @return boolean, table<string,boolean> missing_privs
 function core.check_player_privs(player_or_name, ...) end
 
 --- * Returns true if the "password entry" for a player with name matches given
@@ -42,6 +43,11 @@ function core.check_player_privs(player_or_name, ...) end
 ---   engine as returned as part of a `get_auth()` call on the auth handler.
 --- * Only use this function for making it possible to log in via password from
 ---   external protocols such as IRC, other uses are frowned upon.
+---
+--- @param name     string
+--- @param entry    string
+--- @param password string
+--- @return boolean
 function core.check_password_entry(name, entry, password) end
 
 --- * Convert a name-password pair to a password hash that Minetest can use.
@@ -50,27 +56,41 @@ function core.check_password_entry(name, entry, password) end
 ---   from the function, with an externally provided password, as the hash
 ---   in the db might use the new SRP verifier format.
 --- * For this purpose, use `core.check_password_entry` instead.
+---
+--- @param name         string
+--- @param raw_password string
+--- @return string
 function core.get_password_hash(name, raw_password) end
 
 --- Returns an IP address string for the player
 ---   `name`.
 --- * The player needs to be online for this to be successful.
+---
+--- @param name string
+--- @return string
 function core.get_player_ip(name) end
 
 --- Return the currently active auth handler
+--- * Must be called *after* load time, to ensure that any custom auth handler
+---   was already registered.
 --- * See the [Authentication handler definition]
 --- * Use this to e.g. get the authentication data for a player:
 ---   `local auth_data = core.get_auth_handler().get_auth(playername)`
 ---
----@return AuthenticationHandlerDefinition
+--- @return AuthenticationHandlerDefinition
 function core.get_auth_handler() end
 
 --- * Must be called by the authentication handler for privilege changes.
 --- * `name`: string; if omitted, all auth data should be considered modified
+---
+--- @param name? string
 function core.notify_authentication_modified(name) end
 
 --- Set password hash of
 ---   player `name`.
+---
+--- @param name          string
+--- @param password_hash string
 function core.set_player_password(name, password_hash) end
 
 --- Set privileges of player
@@ -80,5 +100,20 @@ function core.set_player_password(name, password_hash) end
 --- @param privs table<string,boolean>  object like `{priv1=true,...}`
 function core.set_player_privs(name, privs) end
 
+--- Helper to grant or revoke privileges.
+--- * `changes`: Table of changes to make.
+---   A field `[privname] = true` grants a privilege,
+---   whereas `[privname] = false` revokes a privilege.
+--- * Example: `core.change_player_privs("singleplayer", {interact = true, fly = false})`
+---   will grant singleplayer the `interact` privilege
+---   and revoke singleplayer's `fly` privilege.
+---   All other privileges will remain unchanged.
+---
+--- @param name    string
+--- @param changes table<string,boolean>
+function core.change_player_privs(name, changes) end
+
 --- * See `reload()` in authentication handler definition
+---
+--- @return boolean
 function core.auth_reload() end
