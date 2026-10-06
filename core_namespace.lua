@@ -1107,7 +1107,7 @@ core.registered_items = {}
 --- * Map of registered node definitions, indexed by name
 ---
 --- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5840-L5841)
---- @type table<string,NodeDefinition>
+--- @type table<string,RegisteredNodeDefinition>
 core.registered_nodes = {}
 --- * Map of registered craft item definitions, indexed by name
 ---

@@ -649,3 +649,42 @@ local NodeDefinition = {
 	--- @type string?
 	mod_origin                    = '??',
 }
+
+
+--- Definition of an already registered node (`core.registered_nodes`).
+--- Fields below have non-`nil` defaults in `core.nodedef_default` (`builtin/game/item.lua`),
+--- which the engine applies via metatable (`__index`) during registration,
+--- so they are always present on registered nodes.
+--- @class RegisteredNodeDefinition: NodeDefinition
+--- @field type string
+--- @field description string
+--- @field groups table<string,number>
+--- @field inventory_image string
+--- @field wield_image string
+--- @field wield_scale vector
+--- @field stack_max integer
+--- @field usable boolean
+--- @field liquids_pointable boolean
+--- @field drawtype string
+--- @field visual_scale number
+--- @field post_effect_color table
+--- @field paramtype string
+--- @field paramtype2 string
+--- @field is_ground_content boolean
+--- @field sunlight_propagates boolean
+--- @field walkable boolean
+--- @field pointable boolean
+--- @field diggable boolean
+--- @field climbable boolean
+--- @field buildable_to boolean
+--- @field floodable boolean
+--- @field liquidtype string
+--- @field liquid_alternative_flowing string
+--- @field liquid_alternative_source string
+--- @field liquid_viscosity number
+--- @field drowning number
+--- @field light_source number
+--- @field damage_per_second number
+--- @field selection_box table
+--- @field legacy_facedir_simple boolean
+--- @field legacy_wallmounted boolean
