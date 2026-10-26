@@ -370,12 +370,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/http_requests.lua
 
 -- Storage API:
---- * returns reference to mod private `StorageRef`
---- * must be called during mod load time
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5630-L5632)
---- @return StorageRef
-function core.get_mod_storage() end
+--   see ./core_namespace/storage_api.lua
 
 -- Misc.:
 --- Returns list of `ObjectRefs`
