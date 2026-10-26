@@ -337,20 +337,7 @@ function core.translate(textdomain, str, ...) end
 
 
 -- Rollback:
---- Returns `{{actor, pos, time, oldnode, newnode}, ...}`
---- * Find who has done something to a node, or near a node
---- * `actor`: `"player:<name>"`, also `"liquid"`.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5346-L5349)
-function core.rollback_get_node_actions(pos, range, seconds, limit) end
-
---- Returns
----   `boolean, log_messages`.
---- * Revert latest actions of someone
---- * `actor`: `"player:<name>"`, also `"liquid"`.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5350-L5353)
-function core.rollback_revert_actions_by(actor, seconds) end
+--   see ./core_namespace/rollback.lua
 
 -- Defaults for the `on_place` and `on_drop` item definition functions:
 --- * Place item as a node
