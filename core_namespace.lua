@@ -346,36 +346,8 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/defaults_for_nodes.lua
 
 -- Sounds:
---- Returns a handle
---- * `spec` is a `SimpleSoundSpec`
---- * `parameters` is a sound parameter table
---- * `ephemeral` is a boolean (default: false)
----   Ephemeral sounds will not return a handle and can't be stopped or faded.
----   It is recommend to use this for short sounds that happen in response to
----   player actions (e.g. door closing).
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5398-L5404)
-function core.sound_play(spec, parameters, ephemeral) end
+--   see ./core_namespace/sounds.lua
 
---- * `handle` is a handle returned by `core.sound_play`
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5405-L5406)
-function core.sound_stop(handle) end
-
---- * `handle` is a handle returned by `core.sound_play`
---- * `step` determines how fast a sound will fade.
----   The gain will change by this much per second,
----   until it reaches the target gain.
----   Note: Older versions used a signed step. This is deprecated, but old
----   code will still work. (the client uses abs(step) to correct it)
---- * `gain` the target gain for the fade.
----   Fading to zero will delete the sound.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5407-L5415)
-function core.sound_fade(handle, step, gain) end
-
---- @class job
-local job = {}
 -- Timing:
 --- Returns job table to use as below.
 --- * Call the function `func` after `time` seconds, may be fractional
