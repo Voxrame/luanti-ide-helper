@@ -367,21 +367,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/schematics.lua
 
 -- HTTP Requests:
---- * returns `HTTPApiTable` containing http functions if the calling mod has
----   been granted access by being listed in the `secure.http_mods` or
----   `secure.trusted_mods` setting, otherwise returns `nil`.
---- * The returned table contains the functions `fetch`, `fetch_async` and
----   `fetch_async_get` described below.
---- * Only works at init time and must be called from the mod's main scope
----   (not from a function).
---- * Function only exists if minetest server was built with cURL support.
---- * **DO NOT ALLOW ANY OTHER MODS TO ACCESS THE RETURNED TABLE, STORE IT IN
----   A LOCAL VARIABLE!**
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5606-L5616)
----
---- @return HTTPApiTable
-function core.request_http_api() end
+--   see ./core_namespace/http_requests.lua
 
 -- Storage API:
 --- * returns reference to mod private `StorageRef`
