@@ -358,35 +358,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/server.lua
 
 -- Bans:
---- Returns a list of all bans formatted as string
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5473-L5473)
-function core.get_ban_list() end
-
---- Returns list of bans matching
----   IP address or name formatted as string
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5474-L5475)
-function core.get_ban_description(ip_or_name) end
-
---- Ban the IP of a currently connected player
---- * Returns boolean indicating success
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5476-L5477)
-function core.ban_player(name) end
-
---- Remove ban record matching
----   IP address or name
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5478-L5479)
-function core.unban_player_or_ip(ip_or_name) end
-
---- Disconnect a player with an optional
----   reason.
---- * Returns boolean indicating success (false if player nonexistant)
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5480-L5482)
-function core.kick_player(name, reason) end
+--   see ./core_namespace/bans.lua
 
 -- Particles:
 --- * Deprecated: `core.add_particle(pos, velocity, acceleration,
