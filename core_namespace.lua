@@ -361,33 +361,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/bans.lua
 
 -- Particles:
---- * Deprecated: `core.add_particle(pos, velocity, acceleration,
----   expirationtime, size, collisiondetection, texture, playername)`
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5487-L5489)
-function core.add_particle(particle_definition) end
-
---- * Add a `ParticleSpawner`, an object that spawns an amount of particles
----   over `time` seconds.
---- * Returns an `id`, and -1 if adding didn't succeed
---- * Deprecated: `core.add_particlespawner(amount, time,
----   minpos, maxpos,
----   minvel, maxvel,
----   minacc, maxacc,
----   minexptime, maxexptime,
----   minsize, maxsize,
----   collisiondetection, texture, playername)`
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5491-L5501)
-function core.add_particlespawner(particlespawner_definition) end
-
---- * Delete `ParticleSpawner` with `id` (return value from
----   `core.add_particlespawner`).
---- * If playername is specified, only deletes on the player's client,
----   otherwise on all clients.
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5503-L5507)
-function core.delete_particlespawner(id, player) end
+--   see ./core_namespace/particles.lua
 
 -- Schematics:
 --- * Create a schematic from the volume of map specified by the box formed by
