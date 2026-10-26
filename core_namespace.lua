@@ -349,18 +349,7 @@ function core.translate(textdomain, str, ...) end
 --   see ./core_namespace/sounds.lua
 
 -- Timing:
---- Returns job table to use as below.
---- * Call the function `func` after `time` seconds, may be fractional
---- * Optional: Variable number of arguments that are passed to `func`
----
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L5420-L5422)
----@param time number @in seconds
----@param func fun()
----@return job @job (job:cancel() to stop)
-function core.after(time, func, ...) end
-
---- * Cancels the job function from being called
-function job:cancel() end
+--   see ./core_namespace/timing.lua
 
 -- Async environment:
 --- * Queue the function `func` to be ran in an async environment.
