@@ -201,79 +201,65 @@ core.features = {
 --- @return boolean,table<string,boolean>
 function core.has_feature(arg) end
 
---- Table containing information
----   about a player. Example return value:
---- ```lua
----   {
----       address = "127.0.0.1",     -- IP address of client
----       ip_version = 4,            -- IPv4 / IPv6
----       connection_uptime = 200,   -- seconds since client connected
----       protocol_version = 32,     -- protocol version used by client
----       formspec_version = 2,      -- supported formspec version
----       lang_code = "fr"           -- Language code used for translation
----       -- the following keys can be missing if no stats have been collected yet
----       min_rtt = 0.01,            -- minimum round trip time
----       max_rtt = 0.2,             -- maximum round trip time
----       avg_rtt = 0.02,            -- average round trip time
----       min_jitter = 0.01,         -- minimum packet time jitter
----       max_jitter = 0.5,          -- maximum packet time jitter
----       avg_jitter = 0.03,         -- average packet time jitter
----       -- the following information is available in a debug build only!!!
----       -- DO NOT USE IN MODS
----       --ser_vers = 26,             -- serialization version used by client
----       --major = 0,                 -- major version number
----       --minor = 4,                 -- minor version number
----       --patch = 10,                -- patch version number
----       --vers_string = "0.4.9-git", -- full version string
----       --state = "Active"           -- current client state
----   }
---- ```
---- [View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L4400-L4425)
+--- Information about a connected player's client (see `core.get_player_information()`).
+--- @class PlayerInformation
+--- @field address               string   IP address of the client.
+--- @field ip_version            integer  `4` (IPv4), `6` (IPv6) or `0` (unknown).
+--- @field connection_uptime     number   Seconds since the client connected.
+--- @field protocol_version      integer  Network protocol version agreed with the server for this connection.
+--- @field formspec_version      integer  Formspec version supported by the client. Since: 5.1.
+--- @field lang_code             string   Language code used for translation (`""`, if the client sent none).
+---                                       Since: 5.3.
+--- @field version_string        string   Full version string reported by the client (e.g. `"5.12.0"`). Can be spoofed.
+---                                       Since: 5.11 (before: in debug builds only).
+--- @field min_rtt               number?  Minimum round trip time.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field max_rtt               number?  Maximum round trip time.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field avg_rtt               number?  Average round trip time.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field min_jitter            number?  Minimum packet time jitter.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field max_jitter            number?  Maximum packet time jitter.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field avg_jitter            number?  Average packet time jitter.
+---                                       Missing, if no stats collected yet. Since: 5.3 (before: always present).
+--- @field serialization_version integer? Debug builds only. Do not use in mods.
+--- @field major                 integer? Debug builds only. Do not use in mods.
+--- @field minor                 integer? Debug builds only. Do not use in mods.
+--- @field patch                 integer? Debug builds only. Do not use in mods.
+--- @field state                 string?  Debug builds only. Do not use in mods.
+
+--- Returns information about the player's client.
+--- @param player_name string
+--- @return PlayerInformation|nil `nil`, if there is no such player or no information about its client.
 function core.get_player_information(player_name) end
 
 
---- Will only be present if the client sent this information (requires v5.7+)
+--- Information about the player's client window (see `core.get_player_window_information()`).
 ---
 --- Note that none of these things are constant, they are likely to change during a client
---- connection as the player resizes the window and moves it between monitors
+--- connection as the player resizes the window and moves it between monitors.
 ---
---- real_gui_scaling and real_hud_scaling can be used instead of DPI.
+--- `real_gui_scaling` and `real_hud_scaling` can be used instead of DPI.
 --- OSes don't necessarily give the physical DPI, as they may allow user configuration.
---- real_*_scaling is just OS DPI / 96 but with another level of user configuration.
---- ```lua
---- {
---- 	-- Current size of the in-game render target (pixels).
---- 	--
---- 	-- This is usually the window size, but may be smaller in certain situations,
---- 	-- such as side-by-side mode.
---- 	size = {
---- 		x = 1308,
---- 		y = 577,
---- 	},
----
---- 	-- Estimated maximum formspec size before Minetest will start shrinking the
---- 	-- formspec to fit. For a fullscreen formspec, use a size 10-20% larger than
---- 	-- this and `padding[-0.01,-0.01]`.
---- 	max_formspec_size = {
---- 		x = 20,
---- 		y = 11.25
---- 	},
----
---- 	-- GUI Scaling multiplier
---- 	-- Equal to the setting `gui_scaling` multiplied by `dpi / 96`
---- 	real_gui_scaling = 1,
----
---- 	-- HUD Scaling multiplier
---- 	-- Equal to the setting `hud_scaling` multiplied by `dpi / 96`
---- 	real_hud_scaling = 1,
----
---- 	-- Whether the touchscreen controls are enabled.
---- 	-- Usually (but not always) `true` on Android.
---- 	-- Requires at least Minetest 5.9.0 on the client. For older clients, it
---- 	-- is always set to `false`.
---- 	touch_controls = false,
---- }
---- ```
+--- `real_*_scaling` is just OS DPI / 96 but with another level of user configuration.
+--- @class PlayerWindowInformation
+--- @field size              IntegerPosition2d Current size of the in-game render target (pixels).
+---                                            Usually the window size, but may be smaller (e.g. side-by-side mode).
+--- @field max_formspec_size Position2d        Estimated maximum formspec size before the client will start
+---                                            shrinking the formspec to fit.
+--- @field real_gui_scaling  number            GUI scaling multiplier: setting `gui_scaling` multiplied by `dpi / 96`.
+--- @field real_hud_scaling  number            HUD scaling multiplier: setting `hud_scaling` multiplied by `dpi / 96`.
+--- @field touch_controls    boolean           Whether the touchscreen controls are enabled
+---                                            (usually, but not always, on Android). Always `false` for clients < 5.9.
+---                                            Since: 5.9.
+
+--- Returns information about the player's client window. Since: 5.7.
+--- Client sends it some time after join (and on each change), clients < 5.7 never send it.
+--- @param player_name string
+--- @return PlayerWindowInformation|nil
+---         `nil`, if there is no such player or the client hasn't sent the information (yet).
 function core.get_player_window_information(player_name) end
 
 --- Returns success.
