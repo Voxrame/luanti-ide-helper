@@ -23,6 +23,7 @@
 ---     """
 --- ```
 --- @class Settings
+--- @overload fun(filename:string):Settings
 Settings = {}
 
 --- Returns a value of setting `key`
