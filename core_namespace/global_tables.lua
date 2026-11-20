@@ -30,7 +30,7 @@ core.registered_tools = {}
 ---   Note: changes to initial properties will only affect entities spawned afterwards,
 ---   as they are only read when spawning.
 ---
---- @type table<string,EntityDefinition>
+--- @type table<string,RegisteredEntityDefinition<LuaEntity<any>>>
 core.registered_entities = {}
 
 --- * Map of active object references, indexed by object GUID
@@ -46,7 +46,7 @@ core.object_refs = {}
 
 --- * Map of Lua entities, indexed by active object id
 ---
---- @type table<integer,LuaEntity>
+--- @type table<integer,LuaEntity<any>>
 core.luaentities = {}
 
 --- * List of ABM definitions

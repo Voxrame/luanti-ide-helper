@@ -37,8 +37,24 @@ function core.override_item(name, redefinition) end
 --- @param name string
 function core.unregister_item(name) end
 
+--- Registers an entity (see `EntityDefinition`).
+---
+--- `T` is the type of `self` in callbacks (the spawned `LuaEntity`).
+--- To get your own fields typed in `self`, describe your entity as a class inherited from `LuaEntity<YourClass>`:
+--- ```lua
+--- --- @class mymod.Entity: LuaEntity<mymod.Entity>
+--- --- @field _timer number
+--- local Entity = {
+---     _timer = 0,
+---     on_step = function(self, dtime)
+---         self._timer = self._timer + dtime
+---     end,
+--- }
+--- core.register_entity("mymod:entity", Entity)
+--- ```
 --- @param name string
---- @param entity_definition EntityDefinition
+--- @generic T: LuaEntity<T>
+--- @param entity_definition EntityDefinition<LuaEntity<T>>
 function core.register_entity(name, entity_definition) end
 
 --- @param abm_definition ABMDefinition
