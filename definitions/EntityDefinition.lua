@@ -53,9 +53,9 @@ local EntityDefinition = {
 	--- * `time_from_last_punch`: Meant for disallowing spamming of clicks (can be `nil`).
 	--- * `tool_capabilities`: capability table of used item
 	--- * `dir`: unit vector of direction of punch. Always defined. Points from the puncher to the punched.
-	--- * `damage`: damage that will be done to entity.
+	--- * `damage`: damage that will be done to entity (integer).
 	--- * Can return `true` to prevent the default damage mechanism.
-	--- @type (fun(self:T, puncher:ObjectRef|Player|nil, time_from_last_punch:number|nil, tool_capabilities:table, dir:vector, damage:number):boolean?)?
+	--- @type (fun(self:T, puncher:ObjectRef|Player|nil, time_from_last_punch:number|nil, tool_capabilities:table, dir:vector, damage:integer):boolean?)?
 	on_punch = nil,
 	--- * Called when the object dies.
 	--- * `killer`: an `ObjectRef` (can be `nil`)
