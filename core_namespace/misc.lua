@@ -39,11 +39,15 @@ function core.send_leave_message(player_name, timed_out) end
 --- * `pos`: table {x=number, y=number, z=number},
 --- * Gives a unique hash number for a node position (16+16+16=48bit)
 ---
+---@param pos vector
+---@return    integer
 function core.hash_node_position(pos) end
 
 --- Returns a position
 --- * Inverse transform of `core.hash_node_position`
 ---
+---@param hash integer
+---@return     vector
 function core.get_position_from_hash(hash) end
 
 --- Returns a rating
